@@ -1,0 +1,12 @@
+#loading-bar-spinner .spinner-icon {
+    border-top-color: #7ae793;
+    border-left-color: #7ae793;
+}
+
+#loading-bar .bar {
+    background: #7ae793;
+}
+
+.man-spinner {
+    margin-left: -50px;
+}
