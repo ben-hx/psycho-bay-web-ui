@@ -36,33 +36,8 @@ app.config(['$stateProvider', function ($stateProvider) {
             anchor: '#test'
         }
     });
-
-    /*
-     $stateProvider.state('home', {
-     url: '/',
-
-     views: {
-     "main": {
-     templateUrl: 'sections/home/home.html',
-     controller: 'HomeCtrl'
-     },
-     "footer": {
-     templateUrl: 'sections/footer/footer.html',
-     controller: 'FooterCtrl'
-     }
-     }
-
-
-     views: {
-     "myView": {
-     templateUrl: '/templates/myView.html'
-     }
-     }
-     });
-     */
 }]);
 
 app.controller('HomeCtrl', ['$scope', '$state', '$window', function ($scope, $state, $window) {
 
-    console.log("Home");
 }]);

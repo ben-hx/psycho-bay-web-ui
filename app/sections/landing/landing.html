@@ -1,61 +1,76 @@
-<header id="landing">
-    <img class="img-landing" src="img/landing/landing.jpg">
-    <div class="container">
-        <div class="row">
+<header id="landing" class="section-item">
 
-            <div class="col-sm-3 landing-item">
-                <div class="landing-item-inner">
-
-                    <div class="landing-item-glyph">
-                        <i class="fa fa-user fa-3x"></i>
-                    </div>
-
-                    <div class="landing-item-text">
-                        aaaaaaaaaaaaaaa
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-3 landing-item">
-                <div class="landing-item-inner">
-
-                    <div class="landing-item-glyph">
-                        <i class="fa fa-user fa-3x"></i>
-                    </div>
-
-                    <div class="landing-item-text">
-                        aaaaaaaaaaaaaaa
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-3 landing-item">
-                <div class="landing-item-inner">
-
-                    <div class="landing-item-glyph">
-                        <i class="fa fa-user fa-3x"></i>
-                    </div>
-
-                    <div class="landing-item-text">
-                        aaaaaaaaaaaaaaa
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-3 landing-item">
-                <div class="landing-item-inner">
-
-                    <div class="landing-item-glyph">
-                        <i class="fa fa-user fa-3x"></i>
-                    </div>
-
-                    <div class="landing-item-text">
-                        aaaaaaaaaaaaaaa
-                    </div>
-                </div>
-            </div>
-
-
+    <div class="image-edit">
+        <img class="img-landing" ng-src="{{model.landing.image}}" alt="">
+        <div class="info">
+            <file-upload ng-model="files"
+                         on-success="onImageUploadSuccess(response, model.landing)"
+                         on-progress="onImageUploadProgress(event)"
+                         class="">Drop
+                or select the File
+            </file-upload>
+            <uib-progressbar class="animate-hide progress" ng-show="fileUploadValue" value="fileUploadValue"
+                             type="success"><b>{{fileUploadValue}}%</b>
+            </uib-progressbar>
         </div>
     </div>
+
+    <form name="form" class="container">
+        <div class="row">
+
+            <div class="text-item-edit-col animate-hide" ng-hide="!form.$dirty">
+                <button type="button" class="btn btn-default btn-circle btn-xl"
+                        ng-click="undo()"
+                        popover-placement="top-right"
+                        uib-popover="Successfully undo!"
+                        popover-is-open="hasSuccessfullyUndo">
+                    <i class="fa fa-undo" aria-hidden="true"></i>
+                </button>
+                <button type="button" class="btn btn-default btn-circle btn-xl"
+                        ng-click="save()"
+                        popover-placement="top-right"
+                        uib-popover="Successfully saved!"
+                        popover-is-open="hasSuccessfullySaved">
+                    <i class="fa fa-floppy-o" aria-hidden="true"></i>
+                </button>
+            </div>
+
+            <div ng-repeat="sectionItem in model.sections" class="col-sm-3 landing-item">
+                <div class="landing-item-inner">
+
+                    <span uib-dropdown>
+                        <div ng-model="modelItem.icon" class="landing-item-glyph" uib-dropdown-toggle>
+                            <i ng-class="(sectionItem.icon || 'fa fa-file-image-o')+' fa-3x'"></i>
+                        </div>
+
+                        <ul class="dropdown-menu" uib-dropdown-menu role="menu">
+                            <li ng-click="changeIcon(sectionItem, 'fa fa-arrow-up')" role="menuitem">
+                                <a><i class="fa fa-arrow-up"></i></a>
+                            </li>
+                        </ul>
+                    </span>
+
+                    <div class="landing-item-text" contenteditable ng-model="sectionItem.textItemLanding"></div>
+                </div>
+            </div>
+
+        </div>
+    </form>
 </header>
+
+<div class="fixed-bottom-bar">
+    <button type="button" class="btn btn-default btn-circle btn-xl"
+            ng-click="undo()"
+            popover-placement="top-right"
+            uib-popover="Successfully undo!"
+            popover-is-open="hasSuccessfullyUndo">
+        <i class="fa fa-undo" aria-hidden="true"></i>
+    </button>
+    <button type="button" class="btn btn-default btn-circle btn-xl"
+            ng-click="save()"
+            popover-placement="top-right"
+            uib-popover="Successfully saved!"
+            popover-is-open="hasSuccessfullySaved">
+        <i class="fa fa-floppy-o" aria-hidden="true"></i>
+    </button>
+</div>

@@ -1,0 +1,28 @@
+<form name="form" ng-submit="login(vm)" role="form">
+    <div class="modal-header">
+        <h3 class="modal-title">Login</h3>
+    </div>
+    <div class="modal-body">
+        <div class="alert alert-danger" ng-show="error.show">
+            <strong>Watch Out!</strong> {{error.message}}
+        </div>
+        <div class="form-group" ng-class="{ 'has-error': form.email.$dirty && form.email.$error.required }">
+            <label for="email">E-Mail</label>
+            <input type="text" name="email" id="email" class="form-control" ng-model="vm.email" required focus="true"/>
+            <span ng-show="form.email.$dirty && form.email.$error.required" class="help-block">E-Mail is required</span>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" class="form-control" ng-model="vm.password" required/>
+            <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password is required</span>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <span ng-show="dataLoading">
+            <i class="fa fa-spinner fa-spin fa-2x text-primary"></i>
+        </span>
+        <a class="btn btn-link" ng-click="register()">Register</a>
+        <button type="submit" ng-disabled="form.$invalid || vm.dataLoading" class="btn btn-primary">Login</button>
+        <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+    </div>
+</form>

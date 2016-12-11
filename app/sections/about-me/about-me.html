@@ -1,5 +1,18 @@
 <section class="section-item">
-    <img class="img-responsive" src="img/about-me/about-me.jpg">
+    <div class="image-edit">
+        <img class="img-responsive" ng-src="{{model.image}}" alt="">
+        <div class="info">
+            <file-upload ng-model="files"
+                         on-success="onImageUploadSuccess(response, model)"
+                         on-progress="onImageUploadProgress(event)"
+                         class="">Drop
+                or select the File
+            </file-upload>
+            <uib-progressbar class="animate-hide progress" ng-show="fileUploadValue" value="fileUploadValue"
+                             type="success"><b>{{fileUploadValue}}%</b>
+            </uib-progressbar>
+        </div>
+    </div>
 
     <form name="form" class="container">
 
@@ -30,62 +43,50 @@
 
         <div class="row">
 
-            <div ng-repeat="text in model.textItems track by $index"
+            <div ng-repeat="text in model.textItemsOverview track by $index"
                  ng-mouseenter="showEditButtons[$index]=true"
                  ng-mouseleave="showEditButtons[$index]=false"
-                 ng-class="{ 'col-sm-12'   : model.text.length <= 1,
-                          'col-sm-6'   : model.textItems.length === 2,
-                          'col-sm-4'   : model.textItems.length === 3,
-                          'col-sm-3'   : model.textItems.length === 4}">
+                 ng-class="{ 'col-sm-12'   : model.textItemsOverview.length <= 1,
+                          'col-sm-6'   : model.textItemsOverview.length === 2,
+                          'col-sm-4'   : model.textItemsOverview.length === 3,
+                          'col-sm-3'   : model.textItemsOverview.length === 4}">
 
                 <div class="text-item-inner">
 
                     <div class="text-item-edit-bar">
 
-                        <button type="button" class="btn btn-default btn-circle"
-                                ng-show="model.textItems[$index].icon != ''"
-                                ng-click="model.textItems[$index].icon = ''">
-                            <i ng-class="model.textItems[$index].icon" aria-hidden="true"></i>
-                        </button>
-
-                        <span class="animate-hide" ng-show="showEditButtons[$index]" uib-dropdown>
+                        <span uib-dropdown ng-if="$index == 0">
                             <button type="button" class="btn btn-default btn-circle"
                                     ng-click="addIcon($index)"
-                                    uib-dropdown-toggle
-                                    ng-show="model.textItems[$index].icon == ''">
-                                <i class="fa fa-file-image-o" aria-hidden="true"></i>
+                                    uib-dropdown-toggle>
+                                <i ng-class="(model.icon || 'fa fa-file-image-o')" aria-hidden="true"></i>
                             </button>
 
                             <ul class="dropdown-menu" uib-dropdown-menu role="menu">
-                                <li ng-click="takeTextItemIcon(model.textItems[$index], 'fa fa-arrow-up')"
+                                <li ng-click="changeIcon(model, 'fa fa-arrow-up')"
                                     role="menuitem">
-                                    <a><i
-                                            class="fa fa-arrow-up"></i></a></li>
-                                <li ng-click="takeTextItemIcon(model.textItems[$index], 'fa fa-arrow-up')"
-                                    role="menuitem">
-                                    <a><i
-                                            class="fa fa-arrow-up"></i></a></li>
-                                <li ng-click="takeTextItemIcon(model.textItems[$index], 'fa fa-arrow-up')"
-                                    role="menuitem">
-                                    <a><i
-                                            class="fa fa-arrow-up"></i></a></li>
+                                    <a><i class="fa fa-arrow-up"></i></a></li>
                             </ul>
+                        </span>
 
+                        <span class="animate-hide" ng-show="showEditButtons[$index]" uib-dropdown>
                             <button type="button" class="btn btn-default btn-circle pull-right"
-                                    ng-click="removeTextItem($index)">
+                                    ng-click="removeItem($index)">
                                 <i class="fa fa-trash-o" aria-hidden="true"></i>
                             </button>
                         </span>
                     </div>
-                    <div contenteditable class="text-item-text" ng-model="model.textItems[$index].text">
-
+                    <div class="text-item-text">
+                        <span class="text-item-editable-text" contenteditable
+                              ng-model="model.textItemsOverview[$index].text">
+                        </span><a href="" ng-click="openMore(model.textItemsOverview[$index])"> mehr erfahren!</a>
                     </div>
+
                 </div>
             </div>
 
         </div>
 
     </form>
-
 
 </section>

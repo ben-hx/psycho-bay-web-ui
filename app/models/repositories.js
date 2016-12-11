@@ -2,6 +2,21 @@
 
 var app = angular.module('myApp.model');
 
+app.factory('Repositories', ['RepositoryMapper', function (RepositoryMapper) {
+
+    return {
+        landing: new RepositoryMapper('landing'),
+        sections: {
+            aboutMe: new RepositoryMapper('about-me'),
+            myWork: new RepositoryMapper('my-work'),
+            mySurgery: new RepositoryMapper('my-surger'),
+            location: new RepositoryMapper('location'),
+        }
+    }
+
+}]);
+
+
 app.factory('AboutMeRepository', ['RepositoryMapper', function (RepositoryMapper) {
 
     return new RepositoryMapper('about-me');

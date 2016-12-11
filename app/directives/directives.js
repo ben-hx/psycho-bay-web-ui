@@ -2,71 +2,69 @@
 
 /* Directives */
 
-var app = angular.module('myApp.directives', []);
+var app = angular.module('myApp.directives', ['ngFileUpload']);
 
-
-app.directive('checkImage', function ($http) {
-
-    function setDefaultImageForElement(element) {
-        element.attr('src', '../img/movie/movie-default-thumbnail.png');
-    }
-
+app.directive("fileUpload", function ($compile) {
     return {
-        restrict: 'A',
-        link: function (scope, element, attrs) {
-            attrs.$observe('ngSrc', function (ngSrc) {
-                if (!ngSrc) {
-                    setDefaultImageForElement(element);
-                    return;
-                }
-                $http.get(ngSrc).success(function () {
-                }).error(function () {
-                    setDefaultImageForElement(element);
-                });
+        restrict: 'E',
+        replace: true,
+        scope: {
+            onSuccess: '&',
+            onProgress: '&',
+            onError: '&'
+        },
+        link: function (scope, elem, attr) {
+            var text = elem.html();
+            var component = "";
+            component += "<div ngf-drop ngf-select ";
+            component += "ngf-drag-over-class=\"'dragover'\" ngf-multiple=\"true\" ngf-allow-dir=\"true\" ";
+            component += "accept=\"image\/*,application\/pdf\" ";
+            component += "ngf-pattern=\"'image\/*,application\/pdf'\">" + text + "<\/div> ";
+            component += "<div ngf-no-file-drop>File Upload is not supported for this browser<\/div> ";
+            var wrapper = angular.element(component);
+            wrapper.addClass(elem.attr('class'));
+            wrapper.attr('ng-model', elem.attr('ng-model'));
+            elem.html('');
+            elem.before(wrapper);
+            $compile(wrapper)(scope);
+            wrapper.append(elem);
+        },
+        controller: ['$scope', '$timeout', 'Upload', function ($scope, $timeout, Upload) {
 
+            $scope.$watch('files', function () {
+                $scope.upload($scope.files);
             });
-        }
-    };
-});
 
-app.directive("tagInput", function ($compile) {
-    return {
-        restrict: 'E',
-        replace: true,
-        link: function (scope, elem, attr) {
-            var wrapper = angular.element(
-                '<tags-input></tags-input>'
-            );
-            wrapper.addClass(elem.attr('class'));
-            wrapper.attr('ng-model', elem.attr('ng-model'));
-            wrapper.attr('placeholder', elem.attr('placeholder'));
-            elem.before(wrapper);
-            $compile(wrapper)(scope);
-            wrapper.append(elem);
-        }
-    };
-});
-
-app.directive("rankingStars", function ($compile, config) {
-    //var titles = '["' + config.movieOptions.rankingTitles.join("", "") + "]'";
-    var titles = "['one','two','three']";
-    return {
-        restrict: 'E',
-        replace: true,
-        link: function (scope, elem, attr) {
-            var wrapper = angular.element(
-                '<span uib-rating max="10"></span>'
-            );
-            wrapper.addClass(elem.attr('class'));
-            wrapper.attr('ng-model', elem.attr('ng-model'));
-            wrapper.attr('ng-click', elem.attr('ng-click'));
-            wrapper.attr('read-only', elem.attr('read-only'));
-            wrapper.attr('on-leave', elem.attr('on-leave'));
-            wrapper.attr('titles', titles);
-            elem.before(wrapper);
-            $compile(wrapper)(scope);
-            wrapper.append(elem);
-        }
+            $scope.upload = function (files) {
+                if (files && files.length) {
+                    for (var i = 0; i < files.length; i++) {
+                        var file = files[i];
+                        if (!file.$error) {
+                            Upload.upload({
+                                url: 'https://angular-file-upload-cors-srv.appspot.com/upload',
+                                data: {
+                                    username: $scope.username,
+                                    file: file
+                                }
+                            }).then(function (response) {
+                                if ($scope.onSuccess) {
+                                    $scope.onSuccess({response: response});
+                                }
+                            }, function (error) {
+                                if ($scope.onError) {
+                                    $scope.onError({error: error});
+                                }
+                            }, function (event) {
+                                if ($scope.onProgress) {
+                                    $scope.onProgress({event: event});
+                                }
+                                var progressPercentage = parseInt(100.0 * event.loaded / event.total);
+                            });
+                        }
+                    }
+                }
+            };
+        }]
     };
 });
 
@@ -186,27 +184,106 @@ app.directive('focusOnSetVisible', function ($timeout) {
     };
 });
 
-app.directive('contenteditable', function () {
+app.directive('contenteditable', ['$timeout', function ($timeout) {
     return {
-        require: 'ngModel',
         restrict: 'A',
-        link: function (scope, elm, attr, ngModel) {
-
-            function updateViewValue() {
-                ngModel.$setViewValue(this.innerHTML);
+        require: '?ngModel',
+        link: function (scope, element, attrs, ngModel) {
+            // don't do anything unless this is actually bound to a model
+            if (!ngModel) {
+                return
             }
 
-            //Binding it to keyup, lly bind it to any other events of interest
-            //like change etc..
-            elm.on('keyup', updateViewValue);
+            // options
+            var opts = {}
+            angular.forEach([
+                'stripBr',
+                'noLineBreaks',
+                'selectNonEditable',
+                'moveCaretToEndOnChange',
+                'stripTags'
+            ], function (opt) {
+                var o = attrs[opt]
+                opts[opt] = o && o !== 'false'
+            })
 
-            scope.$on('$destroy', function () {
-                elm.off('keyup', updateViewValue);
-            });
+            // view -> model
+            element.bind('input', function (e) {
+                scope.$apply(function () {
+                    var html, html2, rerender
+                    html = element.html()
+                    rerender = false
+                    if (opts.stripBr) {
+                        html = html.replace(/<br>$/, '')
+                    }
+                    if (opts.noLineBreaks) {
+                        html2 = html.replace(/<div>/g, '').replace(/<br>/g, '').replace(/<\/div>/g, '')
+                        if (html2 !== html) {
+                            rerender = true
+                            html = html2
+                        }
+                    }
+                    if (opts.stripTags) {
+                        rerender = true
+                        html = html.replace(/<\S[^><]*>/g, '')
+                    }
+                    ngModel.$setViewValue(html)
+                    if (rerender) {
+                        ngModel.$render()
+                    }
+                    if (html === '') {
+                        // the cursor disappears if the contents is empty
+                        // so we need to refocus
+                        $timeout(function () {
+                            element[0].blur()
+                            element[0].focus()
+                        })
+                    }
+                })
+            })
 
+            // model -> view
+            var oldRender = ngModel.$render
             ngModel.$render = function () {
-                elm.html(ngModel.$viewValue);
+                var el, el2, range, sel
+                if (!!oldRender) {
+                    oldRender()
+                }
+                var html = ngModel.$viewValue || ''
+                if (opts.stripTags) {
+                    html = html.replace(/<\S[^><]*>/g, '')
+                }
+
+                element.html(html)
+                if (opts.moveCaretToEndOnChange) {
+                    el = element[0]
+                    range = document.createRange()
+                    sel = window.getSelection()
+                    if (el.childNodes.length > 0) {
+                        el2 = el.childNodes[el.childNodes.length - 1]
+                        range.setStartAfter(el2)
+                    } else {
+                        range.setStartAfter(el)
+                    }
+                    range.collapse(true)
+                    sel.removeAllRanges()
+                    sel.addRange(range)
+                }
+            }
+            if (opts.selectNonEditable) {
+                element.bind('click', function (e) {
+                    var range, sel, target
+                    target = e.toElement
+                    if (target !== this && angular.element(target).attr('contenteditable') === 'false') {
+                        range = document.createRange()
+                        sel = window.getSelection()
+                        range.setStartBefore(target)
+                        range.setEndAfter(target)
+                        sel.removeAllRanges()
+                        sel.addRange(range)
+                    }
+                })
             }
         }
     }
-});
+}]);

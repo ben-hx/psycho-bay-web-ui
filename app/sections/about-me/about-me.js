@@ -1,27 +1,26 @@
 'use strict';
 
-var app = angular.module('myApp.about-me', ['ui.bootstrap']);
+var app = angular.module('myApp.about-me', ['ui.bootstrap', 'myApp.modal']);
 
-app.controller('AboutMeCtrl', ['$scope', '$timeout', 'AboutMeRepository', function ($scope, $timeout, AboutMeRepository) {
+app.controller('AboutMeCtrl', ['$scope', '$timeout', 'config', 'Repositories', 'ModalModelService', function ($scope, $timeout, config, Repositories, ModalModelService) {
 
     $scope.hasSuccessfullySaved = false;
 
     $scope.load = function () {
-        return AboutMeRepository.load().then(function (model) {
+        return Repositories.sections.aboutMe.load().then(function (model) {
             $scope.model = model;
-            console.log($scope.model);
         });
     };
     $scope.load();
 
     $scope.save = function () {
-        AboutMeRepository.save($scope.model).then(function (model) {
+        Repositories.sections.aboutMe.save($scope.model).then(function (model) {
             $scope.model = model;
             $scope.form.$setPristine();
             $scope.hasSuccessfullySaved = true;
             $timeout(function () {
                 $scope.hasSuccessfullySaved = false;
-            }, 3000);
+            }, config.toolTipTimeToDismiss);
         });
     };
 
@@ -31,31 +30,40 @@ app.controller('AboutMeCtrl', ['$scope', '$timeout', 'AboutMeRepository', functi
             $scope.hasSuccessfullyUndo = true;
             $timeout(function () {
                 $scope.hasSuccessfullyUndo = false;
-            }, 3000);
+            }, config.toolTipTimeToDismiss);
         });
 
     };
 
-    $scope.removeTextItem = function (itemIndex) {
+    $scope.removeItem = function (itemIndex) {
         $scope.form.$setDirty();
-        $scope.model.textItems.splice(itemIndex, 1);
+        $scope.model.textItemsOverview.splice(itemIndex, 1);
     };
 
     $scope.addTextItem = function () {
-        if ($scope.model.textItems.length < 4) {
-            $scope.model.textItems.push({text: "", icon: ""});
+        if ($scope.model.textItemsOverview.length < 4) {
+            $scope.model.textItemsOverview.push({text: ""});
         }
     };
 
-    $scope.takeTextItemIcon = function (item, iconClass) {
-        item.icon = iconClass;
+    $scope.openMore = function (model) {
+        ModalModelService.open();
     };
 
-
-    $scope.tooltipSuccess = function (tooltipOpenValue) {
-
+    $scope.changeIcon = function (model, iconClass) {
+        model.icon = iconClass;
     };
 
+    $scope.onImageUploadSuccess = function (response, model) {
+        console.log("transform response to model");
+        $timeout(function () {
+            $scope.fileUploadValue = undefined;
+            $scope.form.$setDirty();
+        }, config.toolTipTimeToDismiss);
+    };
 
-    console.log("AboutMe");
+    $scope.onImageUploadProgress = function (event) {
+        $scope.fileUploadValue = parseInt(100.0 * event.loaded / event.total);
+    };
+
 }]);

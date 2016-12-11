@@ -333,6 +333,7 @@ section h3.section-subheading {
 }
 
 #landing .landing-item-inner {
+    padding-top: 10px;
     background-color: #FFFFFF;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
@@ -340,17 +341,68 @@ section h3.section-subheading {
 #landing .landing-item-glyph {
     text-align: center;
     padding: 5px;
+    cursor: pointer;
+    cursor: hand;
 }
 
 #landing .landing-item-text {
     text-align: justify;
-    padding: 5px;
+    padding: 10px;
 }
 
 #landing .img-landing {
     width: 100%;
     padding-top: 50px;
     padding-bottom: 0px;
+}
+
+.image-edit {
+    cursor: pointer;
+    cursor: hand;
+    overflow: hidden;
+}
+
+.image-edit img {
+    -webkit-transition: all 0.4s ease-in;
+    transition: all 0.4s ease-in;
+}
+
+.image-edit:hover img {
+    filter: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg"><filter id="filter"><feColorMatrix type="matrix" color-interpolation-filters="sRGB" values="0.2126 0.7152 0.0722 0 0 0.2126 0.7152 0.0722 0 0 0.2126 0.7152 0.0722 0 0 0 0 0 1 0" /><feGaussianBlur stdDeviation="3" /></filter></svg>#filter');
+    filter: grayscale(1) blur(3px);
+    -webkit-filter: grayscale(1) blur(3px);
+    -webkit-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    transform: scale(1.2);
+}
+
+.image-edit .progress {
+    margin-left: 30%;
+    margin-right: 30%;
+}
+
+.image-edit .info {
+    position: relative;
+    height: 100%;
+    bottom: 200px;
+    text-align: center;
+    -webkit-transform: scale(0.7);
+    -ms-transform: scale(0.7);
+    transform: scale(0.7);
+    -webkit-transition: all 0.4s ease-in;
+    transition: all 0.4s ease-in;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.image-edit:hover .info {
+    opacity: 1;
+    filter: alpha(opacity=100);
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
 }
 
 #landing * {
@@ -550,6 +602,10 @@ section h3.section-subheading {
     padding: 10px;
 }
 
+.section-item .text-item-editable-text:focus {
+    outline: transparent;
+}
+
 .section-item .text-item-edit-col {
     position: absolute;
     margin-top: -100px;
@@ -652,4 +708,17 @@ footer {
     height: 100%;
     margin-top: 100px;
     margin-left: 20px;
+}
+
+.fixed-bottom-bar
+{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    z-index: 100000;
+    cursor: pointer;
+    margin: 10px;
+    -moz-opacity: 0.60;
+    opacity: .60;
+    filter: alpha(opacity=60);
 }
