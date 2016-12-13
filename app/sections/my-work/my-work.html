@@ -23,88 +23,62 @@
 
     <form name="form" class="container">
 
-        <div class="text-item-edit-col animate-hide" ng-hide="!form.$dirty">
-            <button type="button" class="btn btn-default btn-circle btn-xl"
-                    ng-click="undo()"
-                    popover-placement="top-right"
-                    uib-popover="Successfully undo!"
-                    popover-is-open="hasSuccessfullyUndo">
-                <i class="fa fa-undo" aria-hidden="true"></i>
-            </button>
-            <button type="button" class="btn btn-default btn-circle btn-xl"
-                    ng-click="save()"
-                    popover-placement="top-right"
-                    uib-popover="Successfully saved!"
-                    popover-is-open="hasSuccessfullySaved">
-                <i class="fa fa-floppy-o" aria-hidden="true"></i>
-            </button>
-        </div>
-
         <div class="text-item-add-col">
             <button type="button" class="btn btn-default btn-circle btn-xl"
-                    ng-click="addTextItem()">
+                    ng-click="addTextItem(ViewModel.model.sections.myWork)">
                 <i class="fa fa-plus" aria-hidden="true"></i>
             </button>
         </div>
 
-
         <div class="row">
-
-            <div ng-repeat="text in model.textItems track by $index"
+            <div ng-repeat="text in ViewModel.model.sections.myWork.textItemsOverview track by $index"
                  ng-mouseenter="showEditButtons[$index]=true"
                  ng-mouseleave="showEditButtons[$index]=false"
-                 ng-class="{ 'col-sm-12'   : model.text.length <= 1,
-                          'col-sm-6'   : model.textItems.length === 2,
-                          'col-sm-4'   : model.textItems.length === 3,
-                          'col-sm-3'   : model.textItems.length === 4}">
+                 ng-class="{ 'col-sm-12'   : ViewModel.model.sections.myWork.textItemsOverview.length <= 1,
+                          'col-sm-6'   : ViewModel.model.sections.myWork.textItemsOverview.length === 2,
+                          'col-sm-4'   : ViewModel.model.sections.myWork.textItemsOverview.length === 3,
+                          'col-sm-3'   : ViewModel.model.sections.myWork.textItemsOverview.length === 4}">
 
                 <div class="text-item-inner">
 
                     <div class="text-item-edit-bar">
 
-                        <button type="button" class="btn btn-default btn-circle"
-                                ng-show="model.textItems[$index].icon != ''"
-                                ng-click="model.textItems[$index].icon = ''">
-                            <i ng-class="model.textItems[$index].icon" aria-hidden="true"></i>
-                        </button>
-
-                        <span class="animate-hide" ng-show="showEditButtons[$index]" uib-dropdown>
+                        <span uib-dropdown ng-if="$index == 0">
                             <button type="button" class="btn btn-default btn-circle"
                                     ng-click="addIcon($index)"
-                                    uib-dropdown-toggle
-                                    ng-show="model.textItems[$index].icon == ''">
-                                <i class="fa fa-file-image-o" aria-hidden="true"></i>
+                                    uib-dropdown-toggle>
+                                <i ng-class="(ViewModel.model.sections.myWork.icon || 'fa fa-file-image-o')"
+                                   aria-hidden="true"></i>
                             </button>
 
                             <ul class="dropdown-menu" uib-dropdown-menu role="menu">
-                                <li ng-click="takeTextItemIcon(model.textItems[$index], 'fa fa-arrow-up')"
+                                <li ng-click="changeIcon(ViewModel.sections.myWork, 'fa fa-arrow-up')"
                                     role="menuitem">
-                                    <a><i
-                                            class="fa fa-arrow-up"></i></a></li>
-                                <li ng-click="takeTextItemIcon(model.textItems[$index], 'fa fa-arrow-up')"
-                                    role="menuitem">
-                                    <a><i
-                                            class="fa fa-arrow-up"></i></a></li>
-                                <li ng-click="takeTextItemIcon(model.textItems[$index], 'fa fa-arrow-up')"
-                                    role="menuitem">
-                                    <a><i
-                                            class="fa fa-arrow-up"></i></a></li>
+                                    <a><i class="fa fa-arrow-up"></i></a></li>
                             </ul>
+                        </span>
 
+                        <span class="animate-hide" ng-show="showEditButtons[$index]" uib-dropdown>
                             <button type="button" class="btn btn-default btn-circle pull-right"
-                                    ng-click="removeTextItem($index)">
+                                    ng-click="removeItem(ViewModel.model.sections.myWork, $index)">
                                 <i class="fa fa-trash-o" aria-hidden="true"></i>
                             </button>
                         </span>
                     </div>
-                    <div contenteditable class="text-item-text" ng-model="model.textItems[$index].text">
-
+                    <div class="text-item-text">
+                        <span class="text-item-editable-text" contenteditable
+                              ng-model="ViewModel.model.sections.myWork.textItemsOverview[$index].text">
+                        </span>
+                        <a href=""
+                           ng-hide="ViewModel.model.sections.myWork.textItemsOverview[$index].text == ''"
+                           ng-click="openMore(ViewModel.model.sections.myWork, $index)">
+                            mehr erfahren!
+                        </a>
                     </div>
+
                 </div>
             </div>
-
         </div>
-
     </form>
 
 

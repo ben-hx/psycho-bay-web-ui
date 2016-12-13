@@ -1,9 +1,9 @@
 <section class="section-item">
     <div class="image-edit">
-        <img class="img-responsive" ng-src="{{model.image}}" alt="">
+        <img class="img-responsive" ng-src="{{ViewModel.model.sections.aboutMe.image}}" alt="">
         <div class="info">
             <file-upload ng-model="files"
-                         on-success="onImageUploadSuccess(response, model)"
+                         on-success="onImageUploadSuccess(response, ViewModel.model.sections.aboutMe)"
                          on-progress="onImageUploadProgress(event)"
                          class="">Drop
                 or select the File
@@ -13,73 +13,61 @@
             </uib-progressbar>
         </div>
     </div>
-
+    z
     <form name="form" class="container">
 
-        <div class="text-item-edit-col animate-hide" ng-hide="!form.$dirty">
+        <div class="text-item-edit-col animate-hide">
             <button type="button" class="btn btn-default btn-circle btn-xl"
-                    ng-click="undo()"
-                    popover-placement="top-right"
-                    uib-popover="Successfully undo!"
-                    popover-is-open="hasSuccessfullyUndo">
-                <i class="fa fa-undo" aria-hidden="true"></i>
-            </button>
-            <button type="button" class="btn btn-default btn-circle btn-xl"
-                    ng-click="save()"
-                    popover-placement="top-right"
-                    uib-popover="Successfully saved!"
-                    popover-is-open="hasSuccessfullySaved">
-                <i class="fa fa-floppy-o" aria-hidden="true"></i>
-            </button>
-        </div>
-
-        <div class="text-item-add-col">
-            <button type="button" class="btn btn-default btn-circle btn-xl"
-                    ng-click="addTextItem()">
+                    ng-click="addTextItem(ViewModel.model.sections.aboutMe)">
                 <i class="fa fa-plus" aria-hidden="true"></i>
             </button>
         </div>
 
-
         <div class="row">
 
-            <div ng-repeat="text in model.textItemsOverview track by $index"
+            <div ng-repeat="text in ViewModel.model.sections.aboutMe.textItemsOverview track by $index"
                  ng-mouseenter="showEditButtons[$index]=true"
                  ng-mouseleave="showEditButtons[$index]=false"
-                 ng-class="{ 'col-sm-12'   : model.textItemsOverview.length <= 1,
-                          'col-sm-6'   : model.textItemsOverview.length === 2,
-                          'col-sm-4'   : model.textItemsOverview.length === 3,
-                          'col-sm-3'   : model.textItemsOverview.length === 4}">
+                 ng-class="{ 'col-sm-12'   : ViewModel.model.sections.aboutMe.textItemsOverview.length <= 1,
+                          'col-sm-6'   : ViewModel.model.sections.aboutMe.textItemsOverview.length === 2,
+                          'col-sm-4'   : ViewModel.model.sections.aboutMe.textItemsOverview.length === 3,
+                          'col-sm-3'   : ViewModel.model.sections.aboutMe.textItemsOverview.length === 4}">
 
                 <div class="text-item-inner">
 
                     <div class="text-item-edit-bar">
 
                         <span uib-dropdown ng-if="$index == 0">
-                            <button type="button" class="btn btn-default btn-circle"
+                            <button type="button" class="btn btn-default btn-circle btn-xl"
                                     ng-click="addIcon($index)"
                                     uib-dropdown-toggle>
-                                <i ng-class="(model.icon || 'fa fa-file-image-o')" aria-hidden="true"></i>
+                                <i ng-class="(ViewModel.model.sections.aboutMe.icon || 'fa fa-file-image-o')"
+                                   aria-hidden="true"></i>
                             </button>
 
                             <ul class="dropdown-menu" uib-dropdown-menu role="menu">
-                                <li ng-click="changeIcon(model, 'fa fa-arrow-up')"
+                                <li ng-click="changeIcon(ViewModel.sections.aboutMe, 'fa fa-arrow-up')"
                                     role="menuitem">
                                     <a><i class="fa fa-arrow-up"></i></a></li>
                             </ul>
                         </span>
 
                         <span class="animate-hide" ng-show="showEditButtons[$index]" uib-dropdown>
-                            <button type="button" class="btn btn-default btn-circle pull-right"
-                                    ng-click="removeItem($index)">
+                            <button type="button" class="btn btn-default btn-circle btn-xl pull-right"
+                                    ng-click="removeItem(ViewModel.model.sections.aboutMe, $index)">
                                 <i class="fa fa-trash-o" aria-hidden="true"></i>
                             </button>
                         </span>
                     </div>
                     <div class="text-item-text">
                         <span class="text-item-editable-text" contenteditable
-                              ng-model="model.textItemsOverview[$index].text">
-                        </span><a href="" ng-click="openMore(model.textItemsOverview[$index])"> mehr erfahren!</a>
+                              ng-model="ViewModel.model.sections.aboutMe.textItemsOverview[$index].text">
+                        </span>
+                        <a href=""
+                           ng-hide="ViewModel.model.sections.aboutMe.textItemsOverview[$index].text == ''"
+                           ng-click="openMore(ViewModel.model.sections.aboutMe, $index)">
+                            mehr erfahren!
+                        </a>
                     </div>
 
                 </div>

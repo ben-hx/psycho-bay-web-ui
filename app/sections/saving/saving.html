@@ -1,0 +1,18 @@
+<div class="fixed-bottom-bar animate-hide" ng-hide="hideSaving">
+
+    <button type="button" class="btn btn-default btn-circle btn-xl"
+            ng-click="undo()"
+            popover-placement="top-right"
+            uib-popover="Successfully undo!"
+            popover-is-open="hasSuccessfullyUndo">
+        <i class="fa fa-undo" aria-hidden="true"></i>
+    </button>
+
+    <button type="button" class="btn btn-default btn-circle btn-xl"
+            ng-click="save()"
+            popover-placement="top-right"
+            uib-popover="Successfully saved!"
+            popover-is-open="hasSuccessfullySaved">
+        <i class="fa fa-floppy-o" aria-hidden="true"></i>
+    </button>
+</div>

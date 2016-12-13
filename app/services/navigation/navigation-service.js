@@ -42,7 +42,7 @@ app.factory('NavigationService', ['$state', '$location', '$anchorScroll', 'Navig
 
     var aboutMe = NavigationElement.build({
         name: 'about-me',
-        caption: 'Über Mich',
+        caption: 'Über mich',
         goToState: 'home',
         anchor: 'about-me',
         clickHandler: function () {

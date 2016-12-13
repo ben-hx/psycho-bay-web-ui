@@ -2,60 +2,38 @@
 
 var app = angular.module('myApp.my-work', ['ui.bootstrap']);
 
-app.controller('MyWorkCtrl', ['$scope', '$timeout', 'MyWorkRepository', function ($scope, $timeout, MyWorkRepository) {
+app.controller('MyWorkCtrl', ['$scope', '$timeout', 'ViewModel', function ($scope, $timeout, ViewModel) {
 
-    $scope.hasSuccessfullySaved = false;
+    $scope.ViewModel = ViewModel;
 
-    $scope.load = function () {
-        return MyWorkRepository.load().then(function (model) {
-            $scope.model = model;
-            console.log($scope.model);
-        });
-    };
-    $scope.load();
-
-    $scope.save = function () {
-        MyWorkRepository.save($scope.model).then(function (model) {
-            $scope.model = model;
-            $scope.form.$setPristine();
-            $scope.hasSuccessfullySaved = true;
-            $timeout(function () {
-                $scope.hasSuccessfullySaved = false;
-            }, 3000);
-        });
-    };
-
-    $scope.undo = function () {
-        $scope.load().then(function () {
-            $scope.form.$setPristine();
-            $scope.hasSuccessfullyUndo = true;
-            $timeout(function () {
-                $scope.hasSuccessfullyUndo = false;
-            }, 3000);
-        });
-
-    };
-
-    $scope.removeTextItem = function (itemIndex) {
+    $scope.removeItem = function (model, itemIndex) {
         $scope.form.$setDirty();
-        $scope.model.textItems.splice(itemIndex, 1);
+        model.textItemsOverview.splice(itemIndex, 1);
     };
 
-    $scope.addTextItem = function () {
-        if ($scope.model.textItems.length < 4) {
-            $scope.model.textItems.push({text: "", icon: ""});
+    $scope.addTextItem = function (model) {
+        if (model.textItemsOverview.length < 4) {
+            model.textItemsOverview.push({text: "Hier kommt ein neuer Text!\n"});
         }
     };
 
-    $scope.takeTextItemIcon = function (item, iconClass) {
-        item.icon = iconClass;
+    $scope.openMore = function (model) {
+        ModalModelService.open();
     };
 
-
-    $scope.tooltipSuccess = function (tooltipOpenValue) {
-
+    $scope.changeIcon = function (model, iconClass) {
+        model.icon = iconClass;
     };
 
+    $scope.onImageUploadSuccess = function (response, model) {
+        console.log("transform response to model");
+        $timeout(function () {
+            $scope.fileUploadValue = undefined;
+            $scope.form.$setDirty();
+        }, config.toolTipTimeToDismiss);
+    };
 
-    console.log("AboutMe");
+    $scope.onImageUploadProgress = function (event) {
+        $scope.fileUploadValue = parseInt(100.0 * event.loaded / event.total);
+    };
 }]);

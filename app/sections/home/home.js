@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('myApp.home', ['myApp.model', 'myApp.landing', 'myApp.about-me', 'myApp.my-work', 'myApp.my-surgery']);
+var app = angular.module('myApp.home', ['myApp.model', 'myApp.saving', 'myApp.landing', 'myApp.about-me', 'myApp.my-work', 'myApp.my-surgery']);
 
 app.config(['$stateProvider', function ($stateProvider) {
 
@@ -10,6 +10,10 @@ app.config(['$stateProvider', function ($stateProvider) {
             '': {
                 templateUrl: 'sections/home/home.html',
                 controller: 'HomeCtrl'
+            },
+            'saving@home': {
+                templateUrl: '/sections/saving/saving.html',
+                controller: 'SavingCtrl'
             },
             'landing@home': {
                 templateUrl: '/sections/landing/landing.html',
@@ -33,7 +37,7 @@ app.config(['$stateProvider', function ($stateProvider) {
             }
         },
         params: {
-            anchor: '#test'
+            anchor: ''
         }
     });
 }]);

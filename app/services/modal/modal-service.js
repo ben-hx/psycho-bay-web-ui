@@ -6,12 +6,12 @@ app.factory('ModalModelService', ['$q', '$location', '$uibModal', function ($q, 
     var deferredResult = null;
 
     return {
-        open: function () {
+        open: function (data) {
             deferredResult = $q.defer();
             var modalInstance = $uibModal.open({
                 animation: true,
                 templateUrl: 'services/modal/modal.html',
-                controller: 'LoginCtrl',
+                controller: 'ModalCtrl',
                 keyboard: false
             });
             modalInstance.result.then(function () {
@@ -25,48 +25,15 @@ app.factory('ModalModelService', ['$q', '$location', '$uibModal', function ($q, 
 
 }]);
 
-app.controller('LoginCtrl', ['$scope', '$uibModalInstance', '$uibModal', 'AuthenticationService', function ($scope, $uibModalInstance, $uibModal, AuthenticationService) {
+app.controller('ModalCtrl', ['$scope', '$uibModalInstance', '$uibModal', 'AuthenticationService', function ($scope, $uibModalInstance, $uibModal, AuthenticationService) {
 
     $scope.dataLoading = false;
     $scope.error = {show: false, message: ""};
 
-    $scope.login = function (formData) {
+    $scope.ok = function (formData) {
         $scope.dataLoading = true;
-        AuthenticationService.login(formData.email, formData.password).then(function (user) {
-            $uibModalInstance.close(user);
-        }, function (error) {
-            $scope.error.show = true;
-            $scope.error.message = error.message;
-        }).finally(function () {
-            $scope.dataLoading = false;
-        });
-    };
-
-    $scope.register = function () {
-        $uibModalInstance.dismiss('register');
-    };
-
-    $scope.cancel = function () {
-        $uibModalInstance.dismiss('cancel');
-    };
-
-}]);
-
-app.controller('RegisterCtrl', ['$scope', '$uibModalInstance', 'AuthenticationService', function ($scope, $uibModalInstance, AuthenticationService) {
-
-    $scope.dataLoading = false;
-    $scope.error = {show: false, message: ""};
-
-    $scope.login = function (formData) {
-        $scope.dataLoading = true;
-        AuthenticationService.register(formData.email, formData.password).then(function (user) {
-            $uibModalInstance.close(user);
-        }, function (error) {
-            $scope.error.show = true;
-            $scope.error.message = error.message;
-        }).finally(function () {
-            $scope.dataLoading = false;
-        });
+        $uibModalInstance.close(formData);
+        $scope.dataLoading = false;
     };
 
     $scope.cancel = function () {

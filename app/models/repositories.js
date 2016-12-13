@@ -4,6 +4,8 @@ var app = angular.module('myApp.model');
 
 app.factory('Repositories', ['RepositoryMapper', function (RepositoryMapper) {
 
+    var isDirty = false;
+
     return {
         landing: new RepositoryMapper('landing'),
         sections: {
@@ -11,6 +13,9 @@ app.factory('Repositories', ['RepositoryMapper', function (RepositoryMapper) {
             myWork: new RepositoryMapper('my-work'),
             mySurgery: new RepositoryMapper('my-surger'),
             location: new RepositoryMapper('location'),
+        },
+        setDirty: function (value) {
+            isDirty = value;
         }
     }
 
