@@ -130,12 +130,15 @@ fieldset[disabled] .btn-primary.active {
 
 .btn-xl {
     padding: 20px 40px;
-    border-color: #7ae793;
     border-radius: 3px;
     text-transform: uppercase;
     font-size: 18px;
     font-weight: 700;
     color: #fff;
+}
+
+.btn-default {
+    border-color: #7ae793;
     background-color: #7ae793;
 }
 
@@ -406,7 +409,7 @@ section h3.section-subheading {
 }
 
 #landing * {
-    z-index: 8;
+
 }
 
 @media (min-width: 767px) {
@@ -455,7 +458,7 @@ section h3.section-subheading {
 }
 
 #about-me * {
-    z-index: 12;
+
 }
 
 @media (min-width: 767px) {
@@ -497,7 +500,7 @@ section h3.section-subheading {
 }
 
 #my-work * {
-    z-index: 10;
+
 }
 
 @media (min-width: 767px) {
@@ -545,7 +548,7 @@ section h3.section-subheading {
 }
 
 #my-surgery * {
-    z-index: 11;
+
 }
 
 @media (min-width: 767px) {
@@ -599,7 +602,7 @@ section h3.section-subheading {
 
 .section-item .text-item-text {
     text-align: justify;
-    padding: 10px;
+    padding: 20px;
 }
 
 .section-item .text-item-editable-text:focus {
@@ -802,4 +805,25 @@ footer {
 .portfolio-modal .modal-backdrop {
     display: none;
     opacity: 0;
+}
+
+.ql-editor {
+    padding: 0px;
+}
+
+.ql-toolbar.ql-snow {
+    border: none;
+    background-color: white;
+    padding-top: 0px;
+    padding-left: 0px;
+    margin-left: -5px;
+}
+
+.ql-container.ql-snow {
+    border: none;
+}
+
+.ql-close-toolbar:after {
+    content: "X";
+    font-weight: 700;
 }

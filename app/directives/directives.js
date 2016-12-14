@@ -2,7 +2,7 @@
 
 /* Directives */
 
-var app = angular.module('myApp.directives', ['ngFileUpload']);
+var app = angular.module('myApp.directives', ['ngQuill', 'ngFileUpload']);
 
 app.directive("fileUpload", function ($compile) {
     return {
@@ -63,6 +63,170 @@ app.directive("fileUpload", function ($compile) {
                         }
                     }
                 }
+            };
+        }]
+    };
+});
+
+app.directive('richtTextToolbar', ['$document', function ($document) {
+    return {
+        link: function (scope, element, attr) {
+            var startX = 0, startY = 0, x = 0, y = 0;
+
+            element.css({
+                position: 'relative',
+                border: '1px solid red',
+                backgroundColor: 'lightgrey',
+                cursor: 'pointer',
+                zIndex: '9999'
+            });
+
+            element.on('mousedown', function (event) {
+                // Prevent default dragging of selected content
+                event.preventDefault();
+                startX = event.pageX - x;
+                startY = event.pageY - y;
+                $document.on('mousemove', mousemove);
+                $document.on('mouseup', mouseup);
+            });
+
+            function mousemove(event) {
+                y = event.pageY - startY;
+                x = event.pageX - startX;
+                element.css({
+                    top: y + 'px',
+                    left: x + 'px'
+                });
+            }
+
+            function mouseup() {
+                $document.off('mousemove', mousemove);
+                $document.off('mouseup', mouseup);
+            }
+        }
+    };
+}]);
+
+app.directive("richtTextEditor", function ($compile, $document) {
+
+    var toolbarOptions = [
+        ['bold', 'italic', 'underline'],
+        [{'list': 'ordered'}, {'list': 'bullet'}],
+        [{'size': ['small', false, 'large', 'huge']}],
+        [{'align': []}],
+        ['clean'],
+        ['close-toolbar']
+    ];
+
+    return {
+        restrict: 'E',
+        replace: true,
+        scope: {
+            onSuccess: '&',
+            onProgress: '&',
+            onError: '&'
+        },
+        require: {
+            ngModelCtrl: 'ngModel'
+        },
+        template: '<div></div>',
+        link: function (scope, elem, attr) {
+        },
+        controller: ['$scope', '$element', '$attrs', function ($scope, $element, $attrs) {
+            $attrs.$observe('showToolbar', function () {
+                $scope.showToolbar($scope.$eval($attrs.showToolbar));
+            });
+            
+            $scope.showToolbar = function (value) {
+                if (value) {
+                    $scope.toolbarElement.removeClass('ng-hide');
+                } else {
+                    if (!$scope.toolbarElement.hasClass('ng-hide')) {
+                        $scope.toolbarElement.addClass('ng-hide');
+                    }
+                }
+            };
+
+            $scope.editor = new Quill($element[0], {
+                theme: 'snow',
+                modules: {
+                    toolbar: {
+                        container: toolbarOptions,
+                        handlers: {
+                            'close-toolbar': function () {
+                                $scope.showToolbar(false);
+                            }
+                        }
+                    }
+                }
+            });
+
+            $scope.editor.on('selection-change', function (range) {
+                if (range) {
+                    $scope.showToolbar(true);
+                }
+            });
+
+            $scope.toolbarElement = $element.parent().find('.ql-toolbar');
+            $scope.showToolbar(false);
+        }]
+    };
+});
+
+
+app.directive("richText", function ($compile) {
+    var toolbarOptions = {
+        toolbar: [
+            ['bold', 'italic', 'underline'],
+            [{'list': 'ordered'}, {'list': 'bullet'}],
+            [{'size': ['small', false, 'large', 'huge']}],
+            [{'align': []}],
+            ['clean'],
+            ['omega']
+        ]
+    };
+
+    return {
+        restrict: 'E',
+        replace: true,
+        link: function (scope, elem, attr) {
+            var wrapper = angular.element("<ng-quill-editor></ng-quill-editor>");
+            wrapper.addClass(elem.attr('class'));
+            wrapper.attr('ng-model', elem.attr('ng-model'));
+            wrapper.attr('modules', JSON.stringify(toolbarOptions));
+            elem.append(wrapper);
+            $compile(wrapper)(scope);
+
+            wrapper.on('mouseenter', function () {
+                showToolbar();
+            });
+
+            wrapper.on('mouseleave', function () {
+                hideToolbar();
+            });
+
+            var hideToolbar = function () {
+                if (!toolbarElement.hasClass('ng-hide')) {
+                    toolbarElement.addClass('ng-hide');
+                }
+            };
+            var showToolbar = function () {
+                toolbarElement.removeClass('ng-hide');
+            };
+
+            var toolbarElement = wrapper.find('.ql-toolbar');
+            toolbarElement.addClass('animate-hide');
+            toolbarElement.addClass('ng-hide');
+        },
+        controller: ['$scope', '$element', function ($scope, $element) {
+            $scope.onEditorCreated = function (editor) {
+                $scope.editor = editor;
+                var toolbar = editor.getModule('toolbar');
+
+                toolbar.addHandler('omega', function () {
+                    console.log('test')
+                });
+
             };
         }]
     };

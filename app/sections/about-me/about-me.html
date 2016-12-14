@@ -13,7 +13,7 @@
             </uib-progressbar>
         </div>
     </div>
-    z
+
     <form name="form" class="container">
 
         <div class="text-item-edit-col animate-hide">
@@ -24,10 +24,10 @@
         </div>
 
         <div class="row">
-
             <div ng-repeat="text in ViewModel.model.sections.aboutMe.textItemsOverview track by $index"
                  ng-mouseenter="showEditButtons[$index]=true"
                  ng-mouseleave="showEditButtons[$index]=false"
+                 ng-blur="showEditButtons[$index]=true"
                  ng-class="{ 'col-sm-12'   : ViewModel.model.sections.aboutMe.textItemsOverview.length <= 1,
                           'col-sm-6'   : ViewModel.model.sections.aboutMe.textItemsOverview.length === 2,
                           'col-sm-4'   : ViewModel.model.sections.aboutMe.textItemsOverview.length === 3,
@@ -52,17 +52,51 @@
                             </ul>
                         </span>
 
-                        <span class="animate-hide" ng-show="showEditButtons[$index]" uib-dropdown>
-                            <button type="button" class="btn btn-default btn-circle btn-xl pull-right"
+                        <span class="animate-hide pull-right" ng-show="showEditButtons[$index]">
+                            <button type="button" class="btn btn-default btn-circle btn-xl"
+                                    ng-click="showToolBar[$index] = !showToolBar[$index]">
+                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                            </button>
+                            <button type="button" class="btn btn-danger btn-circle btn-xl"
                                     ng-click="removeItem(ViewModel.model.sections.aboutMe, $index)">
                                 <i class="fa fa-trash-o" aria-hidden="true"></i>
                             </button>
                         </span>
                     </div>
                     <div class="text-item-text">
+                        <!--
                         <span class="text-item-editable-text" contenteditable
                               ng-model="ViewModel.model.sections.aboutMe.textItemsOverview[$index].text">
                         </span>
+
+                        <div text-angular
+                             ng-model="ViewModel.model.sections.aboutMe.textItemsOverview[$index].text"></div>
+
+                        <richt-text-editor ng-model="ViewModel.model.sections.aboutMe.textItemsOverview[$index].text"></richt-text-editor>
+
+                        <ng-quill-editor ng-model="temp"></ng-quill-editor>
+
+
+
+
+
+                        <rich-text show-toolbar="showEditButtons[$index]"
+                                   ng-model="ViewModel.model.sections.aboutMe.textItemsOverview[$index].text"
+                        ></rich-text>
+
+
+
+
+
+
+                        -->
+
+                        <richt-text-editor
+                                ng-model="ViewModel.model.sections.aboutMe.textItemsOverview[$index].text"
+                                show-toolbar="{{showToolBar[$index]}}">
+                        </richt-text-editor>
+
+
                         <a href=""
                            ng-hide="ViewModel.model.sections.aboutMe.textItemsOverview[$index].text == ''"
                            ng-click="openMore(ViewModel.model.sections.aboutMe, $index)">
