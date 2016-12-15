@@ -1,0 +1,17 @@
+<span>
+    <button id="button" type="button"
+            popover-is-open="popoverIsOpen" ng-click="popoverIsOpen = !popoverIsOpen"
+            popover-placement="right-top"
+            uib-popover-template="'iconPopupTemplate.html'">
+        <i ng-class="'fa ' +currentIcon+' fa-'+iconSize+'x'"
+           aria-hidden="true"></i>
+    </button>
+
+    <script type="text/ng-template" id="iconPopupTemplate.html">
+        <div class="col-md-1" ng-repeat="icon in icons"
+             ng-click="changeCurrentIcon(icon)" role="menuitem">
+            <a><i ng-class="'fa ' +icon+' fa-2x'"></i></a>
+        </div>
+    </script>
+</span>
+

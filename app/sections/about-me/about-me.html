@@ -36,22 +36,9 @@
                 <div class="text-item-inner">
 
                     <div class="text-item-edit-bar">
-
-                        <span uib-dropdown ng-if="$index == 0">
-                            <button type="button" class="btn btn-default btn-circle btn-xl"
-                                    ng-click="addIcon($index)"
-                                    uib-dropdown-toggle>
-                                <i ng-class="(ViewModel.model.sections.aboutMe.icon || 'fa fa-file-image-o')"
-                                   aria-hidden="true"></i>
-                            </button>
-
-                            <ul class="dropdown-menu" uib-dropdown-menu role="menu">
-                                <li ng-click="changeIcon(ViewModel.sections.aboutMe, 'fa fa-arrow-up')"
-                                    role="menuitem">
-                                    <a><i class="fa fa-arrow-up"></i></a></li>
-                            </ul>
-                        </span>
-
+                        <section-button class="btn btn-default btn-circle btn-xl"
+                                        ng-if="$index == 0"
+                                        ng-model="ViewModel.model.sections.aboutMe.icon"></section-button>
                         <span class="animate-hide pull-right" ng-show="showEditButtons[$index]">
                             <button type="button" class="btn btn-default btn-circle btn-xl"
                                     ng-click="showToolBar[$index] = !showToolBar[$index]">
@@ -64,39 +51,10 @@
                         </span>
                     </div>
                     <div class="text-item-text">
-                        <!--
-                        <span class="text-item-editable-text" contenteditable
-                              ng-model="ViewModel.model.sections.aboutMe.textItemsOverview[$index].text">
-                        </span>
-
-                        <div text-angular
-                             ng-model="ViewModel.model.sections.aboutMe.textItemsOverview[$index].text"></div>
-
-                        <richt-text-editor ng-model="ViewModel.model.sections.aboutMe.textItemsOverview[$index].text"></richt-text-editor>
-
-                        <ng-quill-editor ng-model="temp"></ng-quill-editor>
-
-
-
-
-
-                        <rich-text show-toolbar="showEditButtons[$index]"
-                                   ng-model="ViewModel.model.sections.aboutMe.textItemsOverview[$index].text"
-                        ></rich-text>
-
-
-
-
-
-
-                        -->
-
-                        <richt-text-editor
+                        <rich-text-editor
                                 ng-model="ViewModel.model.sections.aboutMe.textItemsOverview[$index].text"
                                 show-toolbar="{{showToolBar[$index]}}">
-                        </richt-text-editor>
-
-
+                        </rich-text-editor>
                         <a href=""
                            ng-hide="ViewModel.model.sections.aboutMe.textItemsOverview[$index].text == ''"
                            ng-click="openMore(ViewModel.model.sections.aboutMe, $index)">

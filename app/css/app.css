@@ -327,7 +327,6 @@ section h3.section-subheading {
 
 #landing .landing-item {
     margin: 0 0 15px;
-    padding: 0 20px 0 20px;
     right: 0;
 }
 
@@ -336,17 +335,25 @@ section h3.section-subheading {
 }
 
 #landing .landing-item-inner {
-    padding-top: 10px;
+    padding: 10px 20px 10px 20px;
     background-color: #FFFFFF;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-#landing .landing-item-glyph {
+#landing .landing-item-icon-wrapper {
     text-align: center;
     padding: 5px;
     cursor: pointer;
     cursor: hand;
 }
+
+#landing .landing-item-icon-btn {
+    background:none;
+    border:none;
+    box-shadow:none;
+    color: #222222;
+}
+
 
 #landing .landing-item-text {
     text-align: justify;
@@ -816,7 +823,6 @@ footer {
     background-color: white;
     padding-top: 0px;
     padding-left: 0px;
-    margin-left: -5px;
 }
 
 .ql-container.ql-snow {
@@ -826,4 +832,10 @@ footer {
 .ql-close-toolbar:after {
     content: "X";
     font-weight: 700;
+}
+
+.popover {
+    min-width: 100px;
+    width: 100%;
+    max-width: 100%;
 }

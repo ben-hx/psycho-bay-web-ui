@@ -18,25 +18,31 @@
     <form name="form" class="container">
         <div class="row">
 
-            <div ng-repeat="sectionItem in ViewModel.model.sections" class="col-sm-3 landing-item">
+            <div ng-repeat="sectionItem in ViewModel.model.sections"
+                 ng-mouseenter="showEditButtons[$index]=true"
+                 ng-mouseleave="showEditButtons[$index]=false"
+                 class="col-sm-3 landing-item">
                 <div class="landing-item-inner">
 
-                    <span uib-dropdown>
-                        <div ng-model="modelItem.icon" class="landing-item-glyph" uib-dropdown-toggle>
-                            <i ng-class="(sectionItem.icon || 'fa fa-file-image-o')+' fa-3x'"></i>
-                        </div>
+                    <div class="text-item-edit-bar">
+                        <span class="animate-hide pull-right" ng-show="showEditButtons[$index]">
+                            <button type="button" class="btn btn-default btn-circle btn-xl"
+                                    ng-click="showToolBar[$index] = !showToolBar[$index]">
+                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                            </button>
+                        </span>
+                    </div>
 
-                        <ul class="dropdown-menu" uib-dropdown-menu role="menu">
-                            <li ng-click="changeIcon(sectionItem, 'fa fa-arrow-up')" role="menuitem">
-                                <a><i class="fa fa-arrow-up"></i></a>
-                            </li>
-                            <li ng-click="changeIcon(sectionItem, 'fa fa-user')" role="menuitem">
-                                <a><i class="fa fa-user"></i></a>
-                            </li>
-                        </ul>
-                    </span>
+                    <div class="landing-item-icon-wrapper">
+                        <section-button class="landing-item-icon-btn"
+                                        icon-size="4"
+                                        ng-model="sectionItem.icon"></section-button>
+                    </div>
 
-                    <div class="landing-item-text" contenteditable ng-model="sectionItem.textItemLanding"></div>
+                    <rich-text-editor
+                            ng-model="sectionItem.textItemLanding"
+                            show-toolbar="{{showToolBar[$index]}}">
+                    </rich-text-editor>
                 </div>
             </div>
 
