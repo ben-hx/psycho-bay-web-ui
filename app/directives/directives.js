@@ -2,7 +2,7 @@
 
 /* Directives */
 
-var app = angular.module('myApp.directives', ['ngFileUpload']);
+var app = angular.module('myApp.directives', ['ngFileUpload', 'xeditable']);
 
 app.directive("fileUpload", function ($compile) {
     return {
@@ -130,6 +130,7 @@ app.directive("richTextEditor", function ($compile, $document) {
 
             $scope.showToolbar = function (value) {
                 if (value) {
+                    $element[0].children[0].focus();
                     $scope.toolbarElement.removeClass('ng-hide');
                 } else {
                     if (!$scope.toolbarElement.hasClass('ng-hide')) {
@@ -248,7 +249,6 @@ app.directive('focusOnShow', function ($timeout) {
     return {
         restrict: 'A',
         link: function ($scope, $element, $attr) {
-            debugger;
             if ($attr.ngShow) {
                 $scope.$watch($attr.ngShow, function (newValue) {
                     if (newValue) {

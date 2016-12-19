@@ -8,6 +8,7 @@ app.factory('Repositories', ['RepositoryMapper', function (RepositoryMapper) {
 
     return {
         landing: new RepositoryMapper('landing'),
+        footer: new RepositoryMapper('footer'),
         sections: {
             aboutMe: new RepositoryMapper('about-me'),
             myWork: new RepositoryMapper('my-work'),

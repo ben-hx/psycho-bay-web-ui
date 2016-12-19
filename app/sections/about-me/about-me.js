@@ -17,17 +17,22 @@ app.controller('AboutMeCtrl', ['$scope', '$timeout', 'config', 'ViewModel', 'Mod
 
     $scope.removeItem = function (model, itemIndex) {
         $scope.form.$setDirty();
-        model.textItemsOverview.splice(itemIndex, 1);
+        model.texts.splice(itemIndex, 1);
     };
 
     $scope.addTextItem = function (model) {
-        if (model.textItemsOverview.length < 4) {
-            model.textItemsOverview.push({text: "Hier kommt ein neuer Text!"});
+        if (model.texts.length < 4) {
+            model.texts.push({overview: "Hier kommt ein neuer Text!", detail: "Hier kommt ein neuer Text!"});
         }
     };
 
-    $scope.openMore = function (model) {
-        ModalModelService.open();
+    $scope.openMore = function (textModel) {
+        ModalModelService.open(textModel.detail).then(function (data) {
+            if (textModel.detail != data) {
+                textModel.detail = data;
+                $scope.form.$setDirty();
+            }
+        });
     };
 
     $scope.onImageUploadSuccess = function (response, model) {

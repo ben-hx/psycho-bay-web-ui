@@ -4,18 +4,32 @@ var app = angular.module('myApp.modal', []);
 
 app.factory('ModalModelService', ['$q', '$location', '$uibModal', function ($q, $location, $uibModal) {
     var deferredResult = null;
+    var viewSettings = {
+        showToolBar: false
+    };
 
     return {
         open: function (data) {
             deferredResult = $q.defer();
             var modalInstance = $uibModal.open({
+                size: 'lg',
+                backdrop: 'static',
                 animation: true,
                 templateUrl: 'services/modal/modal.html',
                 controller: 'ModalCtrl',
-                keyboard: false
+                keyboard: false,
+                resolve: {
+                    data: function () {
+                        return data;
+                    },
+                    viewSettings: function () {
+                        return viewSettings;
+                    }
+                }
             });
-            modalInstance.result.then(function () {
-                deferredResult.resolve();
+            modalInstance.result.then(function (result) {
+                viewSettings = result.viewSettings;
+                deferredResult.resolve(result.data);
             }).catch(function (error) {
                 deferredResult.reject();
             });
@@ -25,19 +39,16 @@ app.factory('ModalModelService', ['$q', '$location', '$uibModal', function ($q, 
 
 }]);
 
-app.controller('ModalCtrl', ['$scope', '$uibModalInstance', '$uibModal', 'AuthenticationService', function ($scope, $uibModalInstance, $uibModal, AuthenticationService) {
+app.controller('ModalCtrl', ['$scope', '$uibModalInstance', 'data', 'viewSettings', function ($scope, $uibModalInstance, data, viewSettings) {
 
+    $scope.data = data;
     $scope.dataLoading = false;
-    $scope.error = {show: false, message: ""};
+    $scope.viewSettings = viewSettings;
 
-    $scope.ok = function (formData) {
+    $scope.ok = function (data) {
         $scope.dataLoading = true;
-        $uibModalInstance.close(formData);
+        $uibModalInstance.close({data: data, viewSettings: $scope.viewSettings});
         $scope.dataLoading = false;
-    };
-
-    $scope.cancel = function () {
-        $uibModalInstance.dismiss('cancel');
     };
 
 }]);

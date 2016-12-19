@@ -1,4 +1,6 @@
-<section class="section-item">
+<section class="section-item"
+         ng-mouseenter="showAddButton=true"
+         ng-mouseleave="showAddButton=false">
     <div class="image-edit">
         <img class="img-responsive" ng-src="{{ViewModel.model.sections.aboutMe.image}}" alt="">
         <div class="info">
@@ -16,7 +18,8 @@
 
     <form name="form" class="container">
 
-        <div class="text-item-edit-col animate-hide">
+        <div class="text-item-add animate-hide"
+             ng-show="showAddButton">
             <button type="button" class="btn btn-default btn-circle btn-xl"
                     ng-click="addTextItem(ViewModel.model.sections.aboutMe)">
                 <i class="fa fa-plus" aria-hidden="true"></i>
@@ -24,14 +27,14 @@
         </div>
 
         <div class="row">
-            <div ng-repeat="text in ViewModel.model.sections.aboutMe.textItemsOverview track by $index"
+            <div ng-repeat="text in ViewModel.model.sections.aboutMe.texts track by $index"
                  ng-mouseenter="showEditButtons[$index]=true"
                  ng-mouseleave="showEditButtons[$index]=false"
                  ng-blur="showEditButtons[$index]=true"
-                 ng-class="{ 'col-sm-12'   : ViewModel.model.sections.aboutMe.textItemsOverview.length <= 1,
-                          'col-sm-6'   : ViewModel.model.sections.aboutMe.textItemsOverview.length === 2,
-                          'col-sm-4'   : ViewModel.model.sections.aboutMe.textItemsOverview.length === 3,
-                          'col-sm-3'   : ViewModel.model.sections.aboutMe.textItemsOverview.length === 4}">
+                 ng-class="{ 'col-sm-12'   : ViewModel.model.sections.aboutMe.texts.length <= 1,
+                          'col-sm-6'   : ViewModel.model.sections.aboutMe.texts.length === 2,
+                          'col-sm-4'   : ViewModel.model.sections.aboutMe.texts.length === 3,
+                          'col-sm-3'   : ViewModel.model.sections.aboutMe.texts.length === 4}">
 
                 <div class="text-item-inner">
 
@@ -52,12 +55,12 @@
                     </div>
                     <div class="text-item-text">
                         <rich-text-editor
-                                ng-model="ViewModel.model.sections.aboutMe.textItemsOverview[$index].text"
+                                ng-model="ViewModel.model.sections.aboutMe.texts[$index].overview"
                                 show-toolbar="{{showToolBar[$index]}}">
                         </rich-text-editor>
                         <a href=""
-                           ng-hide="ViewModel.model.sections.aboutMe.textItemsOverview[$index].text == ''"
-                           ng-click="openMore(ViewModel.model.sections.aboutMe, $index)">
+                           ng-hide="ViewModel.model.sections.aboutMe.texts[$index].overview == ''"
+                           ng-click="openMore(ViewModel.model.sections.aboutMe.texts[$index])">
                             mehr erfahren!
                         </a>
                     </div>

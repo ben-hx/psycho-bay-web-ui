@@ -1,18 +1,26 @@
-<form name="form" ng-submit="ok(vm)" role="form">
-    <div class="modal-header">
-        <h3 class="modal-title"></h3>
+<form name="form"
+      ng-submit="ok(data)"
+      role="form"
+      ng-mouseenter="showEditButtons=true"
+      ng-mouseleave="showEditButtons=false">
+    <div class="edit-bar">
+        <span class="animate-hide pull-right" ng-show="showEditButtons">
+            <button type="button" class="btn btn-default btn-circle btn-xl"
+                    ng-click="viewSettings.showToolBar = !viewSettings.showToolBar">
+                <i class="fa fa-pencil" aria-hidden="true"></i>
+            </button>
+        </span>
     </div>
     <div class="modal-body">
-
-        <div class="text-item-editable-text" contenteditable
-             ng-model="asdfasdf">
-        </div>
-
+        <rich-text-editor
+                ng-model="data"
+                show-toolbar="{{viewSettings.showToolBar}}">
+        </rich-text-editor>
     </div>
     <div class="modal-footer">
         <span ng-show="dataLoading">
             <i class="fa fa-spinner fa-spin fa-2x text-primary"></i>
         </span>
-        <button type="submit" ng-disabled="form.$invalid || vm.dataLoading" class="btn btn-primary">Schliessen</button>
+        <button type="submit" class="btn btn-primary">Schliessen</button>
     </div>
 </form>

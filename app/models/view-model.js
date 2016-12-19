@@ -40,6 +40,10 @@ app.factory('ViewModel', ['$q', '$rootScope', 'Repositories', function ($q, $roo
                 model.landing = value || {};
             }));
 
+            promises.push(Repositories.footer.load().then(function (value) {
+                model.footer = value || {};
+            }));
+
             return $q.all(promises).then(function () {
                 self.setDirty(false);
             });
@@ -54,6 +58,7 @@ app.factory('ViewModel', ['$q', '$rootScope', 'Repositories', function ($q, $roo
                 }
             }
             promises.push(Repositories.landing.save(model.landing));
+            promises.push(Repositories.footer.save(model.footer));
             return $q.all(promises).then(function () {
                 self.setDirty(false);
             });

@@ -348,12 +348,11 @@ section h3.section-subheading {
 }
 
 #landing .landing-item-icon-btn {
-    background:none;
-    border:none;
-    box-shadow:none;
+    background: none;
+    border: none;
+    box-shadow: none;
     color: #222222;
 }
-
 
 #landing .landing-item-text {
     text-align: justify;
@@ -616,7 +615,7 @@ section h3.section-subheading {
     outline: transparent;
 }
 
-.section-item .text-item-edit-col {
+.section-item .text-item-add {
     position: absolute;
     margin-top: -100px;
     right: 20px;
@@ -651,6 +650,16 @@ section h3.section-subheading {
     font-size: 20px;
     line-height: 2.00;
     border-radius: 30px;
+}
+
+.btn-circle.btn-sm {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    padding: 5px 0;
+    font-size: 12px;
+    line-height: 1.33;
+    border-radius: 15px;
 }
 
 .btn-circle.btn-lg {
@@ -712,6 +721,19 @@ section h3.section-subheading {
 
 footer {
     margin-top: 20px;
+    padding: 25px 0;
+    text-align: center;
+}
+
+footer .item-add {
+    position: absolute;
+    margin-top: -5px;
+    margin-left: -35px;
+}
+
+footer .item-edit-bar {
+    position: absolute;
+    margin-top: -20px;
 }
 
 .man-spinner {
@@ -838,4 +860,13 @@ footer {
     min-width: 100px;
     width: 100%;
     max-width: 100%;
+}
+
+.modal-content .edit-bar {
+    position: absolute;
+    margin-top: -30px;
+    margin-right: -30px;
+    left: 5px;
+    right: 5px;
+    z-index: 2000;
 }
