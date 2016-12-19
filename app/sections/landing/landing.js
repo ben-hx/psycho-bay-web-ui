@@ -5,6 +5,7 @@ var app = angular.module('myApp.landing', ['ui.bootstrap']);
 app.controller('LandingCtrl', ['$scope', '$q', '$timeout', 'config', 'ViewModel', function ($scope, $q, $timeout, config, ViewModel) {
 
     $scope.ViewModel = ViewModel;
+    $scope.navigationSections = ['aboutMe', 'myWork', 'mySurgery', 'location'];
 
     $scope.$on('dirtyChanged', function (event, isDirty) {
         if (!isDirty) {

@@ -5,19 +5,25 @@
             <div ng-repeat="item in ViewModel.model.footer.items track by $index"
                  ng-mouseenter="showEditButtons[$index]=true"
                  ng-mouseleave="showEditButtons[$index]=false"
-                 ng-blur="showEditButtons[$index]=true"
                  ng-class="{ 'col-md-12 col-sm-12'   : ViewModel.model.footer.items.length < 1,
                           'col-md-6 col-sm-12'   : ViewModel.model.footer.items.length === 1,
                           'col-md-4 col-sm-4'   : ViewModel.model.footer.items.length === 2,
                           'col-md-3 col-sm-6'   : ViewModel.model.footer.items.length === 3}">
-                <div class="item-inner">
-                    <a ng-form editable-form editable-text="item.caption" ng-dblclick="$form.$show()" blur="submit"
-                       e-ng-model="item.caption" class="text-faded footer-links">{{item.caption}}</a>
-
-                    <span class="item-edit-bar">
+                <div ng-form="editForm" editable-form class="item-inner">
+                    <a href=""
+                       class="text-faded footer-links"
+                       editable-text="item.caption"
+                       e-ng-blur="editForm.$submit()"
+                       e-ng-model="item.caption"
+                       ng-click="openModal(item)">{{item.caption}}</a>
+                    <span class="item-edit-bar"
+                          ng-show="showEditButtons[$index] || editForm.$visible">
+                        <button type="button" class="btn btn-default btn-circle btn-sm"
+                                ng-click="!editForm.$visible ? editForm.$show() : editForm.$submit()">
+                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                        </button>
                         <button type="button" class="btn btn-danger btn-circle btn-sm"
-                                ng-click="removeItem(ViewModel.model.footer.items, $index)"
-                                ng-show="showEditButtons[$index]">
+                                ng-click="removeItem(ViewModel.model.footer.items, $index)">
                             <i class="fa fa-trash-o" aria-hidden="true"></i>
                         </button>
                     </span>
@@ -28,13 +34,13 @@
                           'col-md-6 col-sm-12'   : ViewModel.model.footer.items.length === 1,
                           'col-md-4 col-sm-4'   : ViewModel.model.footer.items.length === 2,
                           'col-md-3 col-sm-6'   : ViewModel.model.footer.items.length === 3}">
-                <div>
+                <div class="item-inner">
                     <span class="item-add animate-hide"
                           ng-show="showAddButton">
-                    <button type="button" class="btn btn-default btn-circle btn-sm"
-                            ng-click="addItem(ViewModel.model.footer)">
-                        <i class="fa fa-plus" aria-hidden="true"></i>
-                    </button>
+                        <button type="button" class="btn btn-default btn-circle btn-sm"
+                                ng-click="addItem(ViewModel.model.footer)">
+                            <i class="fa fa-plus" aria-hidden="true"></i>
+                        </button>
                     </span>
                     <span class="footer-copyright">NadiaWagner 2016 &copy;</span>
                 </div>

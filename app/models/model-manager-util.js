@@ -3,14 +3,14 @@ var app = angular.module('myApp.model');
 app.factory('RepositoryMapper', ['$cookieStore', '$q', '$http', function ($cookieStore, $q, $http) {
 
     function loadFromServer(key) {
-        return $http.get(' http://localhost:8000/db/data.json')
+        return $http.get('http://localhost:8000/db/data.json')
             .then(function (data) {
                 return data.data[key];
             });
     }
 
     function saveToServer(key) {
-        return $http.post(' http://localhost:8000/db/data.json')
+        return $http.post('http://localhost:8000/db/data.json')
             .then(function (data) {
                 return data.data[key];
             });

@@ -44,9 +44,6 @@
     </div>
 </div>
 
-<!--
-<ng-include src="'./navigation/navigation.html'" autoscroll="true"></ng-include>
--->
 <!-- Navigation -->
 <nav class="navbar navbar-default navbar-fixed-top" ng-controller="NavigationCtrl">
     <div class="container">
@@ -62,18 +59,31 @@
             <a class="navbar-brand page-scroll" href="#page-top"
                du-smooth-scroll>NadiaWagner</a>
         </div>
-
-        <div class="navbar-collapse collapse">
-
+        <form name="form" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li class="page-scroll" ng-repeat="element in navigationElements()">
-                    <a href="" ng-click="element.clickHandler()">
-                        {{element.caption}}
+                <li ng-form="editForm" editable-form class="page-scroll"
+                    ng-repeat="(key, item) in ViewModel.model"
+                    ng-if="navigationSections.indexOf(key)>=0"
+                    ng-mouseenter="showEditButtons[$index]=true"
+                    ng-mouseleave="showEditButtons[$index]=false">
+                    <a href=""
+                       editable-text="item.caption"
+                       e-ng-blur="editForm.$submit()"
+                       e-ng-model="item.caption"
+                       ng-click="!editForm.$visible ? editForm.$show() : editForm.$submit()">
+                        {{item.caption}}
                     </a>
+                    <span class="item-edit-bar"
+                          ng-show="showEditButtons[$index] || editForm.$visible">
+                        <button type="button" class="btn btn-default btn-circle btn-sm"
+                                ng-click="editForm.$show()">
+                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                        </button>
+                    </span>
                 </li>
             </ul>
 
-        </div><!--/.nav-collapse -->
+        </form><!--/.nav-collapse -->
     </div>
 </nav>
 
@@ -115,7 +125,6 @@
 <script src="services/authentication/basic-authentication-service.js"></script>
 <script src="services/authentication/authentication-service.js"></script>
 <script src="services/navigation/navigation.js"></script>
-<script src="services/navigation/navigation-service.js"></script>
 <script src="services/modal/modal-service.js"></script>
 <script src="services/splashscreen/splash-screen.js"></script>
 
@@ -129,6 +138,7 @@
 <script src="models/models.js"></script>
 <script src="models/view-model.js"></script>
 <script src="models/repositories.js"></script>
+<script src="models/repository.js"></script>
 <script src="models/model-manager-util.js"></script>
 
 <script src="sections/home/home.js"></script>

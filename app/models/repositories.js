@@ -12,7 +12,7 @@ app.factory('Repositories', ['RepositoryMapper', function (RepositoryMapper) {
         sections: {
             aboutMe: new RepositoryMapper('about-me'),
             myWork: new RepositoryMapper('my-work'),
-            mySurgery: new RepositoryMapper('my-surger'),
+            mySurgery: new RepositoryMapper('my-surgery'),
             location: new RepositoryMapper('location'),
         },
         setDirty: function (value) {

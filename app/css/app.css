@@ -246,6 +246,16 @@ fieldset[disabled] .btn-xl.active {
     background-color: #7ae793;
 }
 
+.nav .item-edit-bar {
+    position: absolute;
+    right: 20px;
+    top: 5px;
+}
+
+.nav .editable-text {
+    padding: 10px;
+}
+
 @media (min-width: 768px) {
     .navbar-default {
         padding: 10px 0;
@@ -274,6 +284,11 @@ fieldset[disabled] .btn-xl.active {
 
     .navbar-default.navbar-shrink .navbar-brand {
         font-size: 1.5em;
+    }
+
+    .nav .item-edit-bar {
+        right: -10px;
+        top: -10px;
     }
 }
 
@@ -438,144 +453,6 @@ section h3.section-subheading {
     }
 }
 
-#about-me .container {
-    margin-top: -100px;
-}
-
-#about-me .about-me-item {
-    margin: 0 0 15px;
-    padding: 0 20px 0 20px;
-    right: 0;
-}
-
-#about-me .about-me-item-inner {
-    background-color: #FFFFFF;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-#about-me .about-me-item-glyph {
-    text-align: center;
-    padding: 5px;
-}
-
-#about-me .about-me-item-text {
-    text-align: justify;
-    padding: 10px;
-}
-
-#about-me * {
-
-}
-
-@media (min-width: 767px) {
-    #about-me {
-        margin-top: -30px;
-    }
-
-    #about-me .about-me-item {
-        margin: 0 0 30px;
-    }
-
-    #about-me .about-me-item-text {
-        padding-top: 20px;
-    }
-
-    #about-me .about-me-item-glyph {
-        margin-top: -30px;
-        position: absolute;
-    }
-}
-
-#my-work .container {
-    margin-top: -100px;
-}
-
-#my-work .item-inner {
-    background-color: #FFFFFF;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-#my-work .item-glyph {
-    text-align: center;
-    padding: 5px;
-}
-
-#my-work .item-text {
-    text-align: justify;
-    padding: 10px;
-}
-
-#my-work * {
-
-}
-
-@media (min-width: 767px) {
-    #my-work {
-        margin-top: -50px;
-    }
-
-    #my-work .item-inner {
-        min-height: 150px;
-    }
-
-    #my-work .item-text {
-        padding-top: 20px;
-    }
-
-    #my-work .item-glyph {
-        margin-top: -30px;
-        position: absolute;
-    }
-}
-
-#my-surgery .container {
-    margin-top: -100px;
-}
-
-#my-surgery .my-surgery-item {
-    margin: 0 0 15px;
-    padding: 0 20px 0 20px;
-    right: 0;
-}
-
-#my-surgery .my-surgery-item-inner {
-    background-color: #FFFFFF;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-#my-surgery .my-surgery-item-glyph {
-    text-align: center;
-    padding: 5px;
-}
-
-#my-surgery .my-surgery-item-text {
-    text-align: justify;
-    padding: 10px;
-}
-
-#my-surgery * {
-
-}
-
-@media (min-width: 767px) {
-    #my-surgery {
-        margin-top: -30px;
-    }
-
-    #my-surgery .amy-surgery-item {
-        margin: 0 0 30px;
-    }
-
-    #my-surgery .amy-surgery-item-text {
-        padding-top: 20px;
-    }
-
-    #my-surgery .my-surgery-item-glyph {
-        margin-top: -30px;
-        position: absolute;
-    }
-}
-
 .section-item {
     display: inline-block;
 }
@@ -725,6 +602,10 @@ footer {
     text-align: center;
 }
 
+footer .item-inner {
+    padding: 5px;
+}
+
 footer .item-add {
     position: absolute;
     margin-top: -5px;
@@ -758,82 +639,6 @@ footer .item-edit-bar {
     -moz-opacity: 1;
     opacity: 1;
     filter: alpha(opacity=100);
-}
-
-.portfolio-modal .modal-content {
-    padding: 100px 0;
-    min-height: 100%;
-    border: 0;
-    border-radius: 0;
-    text-align: center;
-    background-clip: border-box;
-    -webkit-box-shadow: none;
-    box-shadow: none;
-}
-
-.portfolio-modal .modal-content h2 {
-    margin-bottom: 15px;
-    font-size: 3em;
-}
-
-.portfolio-modal .modal-content p {
-    margin-bottom: 30px;
-}
-
-.portfolio-modal .modal-content p.item-intro {
-    margin: 20px 0 30px;
-    font-family: "Eras Light ITC", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 16px;
-    font-style: italic;
-}
-
-.portfolio-modal .modal-content ul.list-inline {
-    margin-top: 0;
-    margin-bottom: 30px;
-}
-
-.portfolio-modal .modal-content img {
-    margin-bottom: 30px;
-}
-
-.portfolio-modal .close-modal {
-    position: absolute;
-    top: 25px;
-    right: 25px;
-    width: 75px;
-    height: 75px;
-    background-color: transparent;
-    cursor: pointer;
-}
-
-.portfolio-modal .close-modal:hover {
-    opacity: .3;
-}
-
-.portfolio-modal .close-modal .lr {
-    z-index: 1051;
-    width: 1px;
-    height: 75px;
-    margin-left: 35px;
-    background-color: #222;
-    -webkit-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    transform: rotate(45deg);
-}
-
-.portfolio-modal .close-modal .lr .rl {
-    z-index: 1052;
-    width: 1px;
-    height: 75px;
-    background-color: #222;
-    -webkit-transform: rotate(90deg);
-    -ms-transform: rotate(90deg);
-    transform: rotate(90deg);
-}
-
-.portfolio-modal .modal-backdrop {
-    display: none;
-    opacity: 0;
 }
 
 .ql-editor {
