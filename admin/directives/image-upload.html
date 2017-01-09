@@ -1,0 +1,8 @@
+<div class="image-edit">
+    <uib-progressbar class="progress animate-hide" ng-show="fileUploadValue" value="fileUploadValue"
+                     type="success"><b>{{fileUploadValue}}%</b>
+    </uib-progressbar>
+    <div class="info animate-hide" ng-show="!fileUploadValue">{{options.uploadImageCaption}}</div>
+    <img id="image" class="animate-hide" ngf-drop ngf-select ng-model="file" ngf-drag-over-class="'dragover'">
+    <div ngf-no-file-drop>File Upload is not supported for this browser.</div>
+</div>
