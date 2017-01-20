@@ -2,13 +2,15 @@
          ng-mouseenter="showAddButton=true"
          ng-mouseleave="showAddButton=false">
 
-    <div class="image-wrapper">
-        <image-upload class="img-responsive" ng-model="ViewModel.model.myWork.images[0]"
+    <div class="row">
+        <!--<image-upload class="img-responsive" ng-model="ViewModel.model.myWork.images[0]"
                       on-success="onImageUploadSuccess(response)"
                       options="{uploadImageCaption: config.uploadImageCaption, uploadUrl: config.imageUploadUrl, progressBarTimeToDismiss: config.toolTipTimeToDismiss}">
+    -->
+        <img src="" style="height: 500px; width: 400px; background-color: red">
     </div>
 
-    <form name="form" class="box-wrapper">
+    <form name="form" class="container">
         <div class="text-item-add animate-hide"
              ng-show="showAddButton">
             <button type="button" class="btn btn-default btn-circle btn-xl"
@@ -59,5 +61,6 @@
         </div>
 
     </form>
+
 
 </section>

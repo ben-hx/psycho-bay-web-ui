@@ -35,6 +35,10 @@ app.controller('AboutMeCtrl', ['$scope', '$timeout', 'config', 'ViewModel', 'Mod
         });
     };
 
+    $scope.onMoreChange = function (index) {
+        $scope.form.$setDirty();
+    };
+
     $scope.onImageUploadSuccess = function (response, model) {
         ViewModel.model.aboutMe.image = response.files[0];
         $scope.form.$setDirty();

@@ -165,26 +165,218 @@ app.directive("sectionButton", function () {
     };
 });
 
-app.directive("richTextEditor", function ($compile, $document) {
+app.component('openMore', {
+    transclude: true,
+    bindings: {
+        'ngModel': '<',
+        'show': '='
+    },
+    require: {
+        richTextEditor: '^richTextEditor',
+        ngModelCtrl: 'ngModel'
+    },
+    template: '<a id="open-more" class="open-more" ng-click="openMore()" href=""><ng-transclude></ng-transclude></a>',
+    controller: ['$scope', '$element', 'ModalModelService', function ($scope, $element, ModalModelService) {
+        var self = this;
+        var openMoreElement;
+        var openMoreElementToolbar;
+
+        this.$onInit = function () {
+            self.richTextEditor.quillConfig = {
+                theme: 'snow',
+                modules: {
+                    toolbar: {
+                        container: [
+                            ['bold', 'italic', 'underline'],
+                            [{'list': 'ordered'}, {'list': 'bullet'}],
+                            [{'size': ['small', 'normal', 'large', 'huge']}],
+                            [{'align': []}],
+                            ['clean'],
+                            ['open-more']
+                        ],
+                        handlers: {
+                            'open-more': function (value) {
+                                self.show = !self.show;
+                                self.doShowOpenMore(self.show);
+                                self.ngModelCtrl.$setDirty();
+                            }
+                        }
+                    }
+                },
+                placeholder: self.placeholder || ''
+            };
+        };
+
+        this.$postLink = function () {
+            openMoreElement = $element.find('#open-more');
+            self.doShowOpenMore(self.show);
+        };
+
+        this.doShowOpenMore = function (value) {
+            if (value) {
+                openMoreElement.removeClass('ng-hide');
+            } else {
+                if (!openMoreElement.hasClass('ng-hide')) {
+                    openMoreElement.addClass('ng-hide');
+                }
+            }
+        };
+
+        $scope.openMore = function () {
+            ModalModelService.open(self.ngModel).then(function (data) {
+                self.ngModelCtrl.$setViewValue(data);
+            });
+        };
+    }]
+});
+
+app.component('richTextEditor', {
+    transclude: true,
+    bindings: {
+        'placeholder': '@?',
+        'showToolBar': '<',
+        'ngModel': '<'
+    },
+    require: {
+        ngModelCtrl: 'ngModel'
+    },
+    template: '<div><div id="editor"></div><ng-transclude></ng-transclude></div>',
+    controller: ['$scope', '$element', function ($scope, $element) {
+        var self = this;
+        var content = '';
+        var modelChanged = false;
+        var editorChanged = false;
+        var editor;
+        var editorElement;
+        var toolbarElement;
+        this.quillConfig = {
+            theme: 'snow',
+            modules: {
+                toolbar: {
+                    container: [
+                        ['bold', 'italic', 'underline'],
+                        [{'list': 'ordered'}, {'list': 'bullet'}],
+                        [{'size': ['small', 'normal', 'large', 'huge']}],
+                        [{'align': []}],
+                        ['clean']
+                    ]
+                }
+            },
+            placeholder: self.placeholder || ''
+        };
+
+        this.$onChanges = function (changes) {
+            if (changes.ngModel && changes.ngModel.currentValue !== changes.ngModel.previousValue) {
+                content = changes.ngModel.currentValue;
+
+                if (editor && !editorChanged) {
+                    modelChanged = true;
+                    if (content) {
+                        editor.pasteHTML(content);
+                        return;
+                    }
+                    editor.setText('');
+                }
+                editorChanged = false;
+            }
+            if (editor && changes.readOnly) {
+                editor.enable(!changes.readOnly.currentValue);
+            }
+
+            if (editor && changes.showToolBar && changes.showToolBar.currentValue !== changes.showToolBar.previousValue) {
+                self.doShowToolbar(changes.showToolBar.currentValue);
+            }
+        };
+
+        this.doShowToolbar = function (value) {
+            if (value) {
+                editorElement.children[0].focus();
+                toolbarElement.removeClass('ng-hide');
+            } else {
+                if (!toolbarElement.hasClass('ng-hide')) {
+                    toolbarElement.addClass('ng-hide');
+                }
+            }
+        };
+
+        this.$postLink = function () {
+            editorElement = $element.find('#editor')[0];
+            editor = new Quill(editorElement, self.quillConfig);
+
+            self.editor = editor;
+
+            toolbarElement = $element.find('.ql-toolbar');
+            self.doShowToolbar(self.showToolBar);
+
+            if (content) {
+                editor.pasteHTML(content);
+            }
+
+            editor.on('text-change', function () {
+                var html = editorElement.children[0].innerHTML;
+                if (html === '<p><br></p>') {
+                    html = null;
+                }
+                if (!modelChanged) {
+                    $scope.$apply(function () {
+                        editorChanged = true;
+                        self.ngModelCtrl.$setViewValue(html);
+                    });
+                }
+                modelChanged = false;
+            });
+
+            editor.on('selection-change', function (range) {
+                if (range) {
+                    return;
+                }
+                $scope.$apply(function () {
+                    self.ngModelCtrl.$setTouched();
+                });
+            });
+        };
+    }]
+});
+
+app.directive("richTextEditorMore", function ($compile, $document) {
 
     var toolbarOptions = [
         ['bold', 'italic', 'underline'],
         [{'list': 'ordered'}, {'list': 'bullet'}],
         [{'size': ['small', 'normal', 'large', 'huge']}],
         [{'align': []}],
-        ['clean']
+        ['clean'],
+        ['open-more']
     ];
 
     return {
         restrict: 'E',
         replace: true,
-        require: 'ngModel',
-        template: '<div></div>',
-        link: function ($scope, $element, $attrs, ngModel) {
+        scope: {
+            ngMore: '=',
         },
-        controller: ['$scope', '$element', '$attrs', function ($scope, $element, $attrs) {
+        require: 'ngModel',
+        template: '<div ng-init="init()"><div>',
+        controller: ['$scope', '$element', '$attrs', 'ModalModelService', function ($scope, $element, $attrs, ModalModelService) {
 
             var ngModel = $element.controller('ngModel');
+
+            $scope.init = function () {
+                $element.append($compile('<a id="ql-open-more" ng-click="openMore()" href="">mehr erfahren!</a>')($scope));
+                $scope.toolbarElement = $element.parent().find('.ql-toolbar');
+                $scope.openMoreElement = $element.find('#ql-open-more');
+            };
+
+            $scope.openMore = function () {
+                ModalModelService.open($scope.ngMore.model).then(function (result) {
+                    if ($scope.ngMore.model != result) {
+                        $scope.ngMore.model = $scope.ngMore.model;
+                        if ($scope.ngMore.onChange) {
+                            $scope.ngMore.onChange();
+                        }
+                    }
+                });
+            };
 
             $attrs.$observe('showToolbar', function () {
                 $scope.showToolbar($scope.$eval($attrs.showToolbar));
@@ -201,11 +393,30 @@ app.directive("richTextEditor", function ($compile, $document) {
                 }
             };
 
+            $scope.showOpenMore = function (value) {
+                if (value) {
+                    $scope.openMoreElement.removeClass('ng-hide');
+                } else {
+                    if (!$scope.openMoreElement.hasClass('ng-hide')) {
+                        $scope.openMoreElement.addClass('ng-hide');
+                    }
+                }
+            };
+
+
             $scope.editor = new Quill($element[0], {
                 theme: 'snow',
                 modules: {
                     toolbar: {
-                        container: toolbarOptions
+                        container: toolbarOptions,
+                        handlers: {
+                            'open-more': function (value) {
+                                if ($scope.ngMore) {
+                                    $scope.ngMore.isVisible = !$scope.ngMore.isVisible;
+                                    $scope.showOpenMore($scope.ngMore.isVisible);
+                                }
+                            }
+                        }
                     }
                 }
             });
@@ -230,8 +441,6 @@ app.directive("richTextEditor", function ($compile, $document) {
                 var html = ngModel.$viewValue || '';
                 $scope.editor.pasteHTML(html);
             };
-
-            $scope.toolbarElement = $element.parent().find('.ql-toolbar');
         }]
     };
 });

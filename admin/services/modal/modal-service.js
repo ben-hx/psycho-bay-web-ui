@@ -2,7 +2,7 @@
 
 var app = angular.module('myApp.modal', []);
 
-app.factory('ModalModelService', ['$q', '$location', '$uibModal', function ($q, $location, $uibModal) {
+app.factory('ModalModelService', ['$q', '$location', '$uibModal', '$rootScope', function ($q, $location, $uibModal, $rootScope) {
     var deferredResult = null;
     var viewSettings = {
         showToolBar: false

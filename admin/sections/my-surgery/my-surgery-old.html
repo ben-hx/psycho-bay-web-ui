@@ -1,4 +1,4 @@
-<section class="section-item"
+<section class="section-item overlay"
          ng-mouseenter="showAddButton=true"
          ng-mouseleave="showAddButton=false">
 
@@ -8,7 +8,7 @@
                       options="{uploadImageCaption: config.uploadImageCaption, uploadUrl: config.imageUploadUrl, progressBarTimeToDismiss: config.toolTipTimeToDismiss}">
     </div>
 
-    <form name="form" class="box-wrapper-secound-last">
+    <form name="form" class="box-wrapper">
         <div class="text-item-add animate-hide"
              ng-show="showAddButton">
             <button type="button" class="btn btn-default btn-circle btn-xl"
@@ -87,5 +87,7 @@
         </div>
 
     </form>
+
+    <div class="clearfix"></div>
 
 </section>
