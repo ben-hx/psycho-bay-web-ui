@@ -472,13 +472,25 @@ footer .item-edit-bar {
     margin-top: -10%;
 }
 
-.section-item .row [class*="col-"] {
+.section-item .text-item-container .text-item {
     background-color: #FFFFFF;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .section-item .text-item-inner {
     background-color: #FFFFFF;
+}
+
+.section-item .text-item-icon-wrapper {
+    text-align: center;
+    padding: 5px;
+}
+
+.section-item .text-item-icon-btn {
+    background: none;
+    border: none;
+    box-shadow: none;
+    color: #222222;
 }
 
 .section-item .text-item-edit-bar {
@@ -495,7 +507,6 @@ footer .item-edit-bar {
 }
 
 .section-item .text-item-text {
-    text-align: justify;
     padding: 20px;
 }
 
@@ -521,12 +532,12 @@ footer .item-edit-bar {
         position: absolute;
     }
 
-    .section-item .row {
+    .section-item .text-item-container {
         display: table;
         border-spacing: 20px;
     }
 
-    .section-item .row [class*="col-"] {
+    .section-item .text-item-container .text-item {
         float: none;
         display: table-cell;
         vertical-align: top;
@@ -634,6 +645,7 @@ footer .item-edit-bar {
 
 .ql-editor {
     padding: 0px;
+    white-space: inherit;
 }
 
 .ql-toolbar.ql-snow {
@@ -836,6 +848,10 @@ footer .item-edit-bar {
 /* END Popover-Stuff */
 
 /* Modal-Stuff */
+
+.modal-backdrop {
+    z-index: 1030;
+}
 
 .modal-content .edit-bar {
     position: absolute;

@@ -13,7 +13,11 @@ class RouteController
 
     public function renderPublic($request, $response, $args)
     {
-        return $this->container->get('renderer')->render($response, 'index.html', $args);
+        $fileWithPath = $this->container->get('settings')['db']['path'] . $this->container->get('settings')['db']['file'];
+        $data = json_decode(file_get_contents($fileWithPath), true);
+        return $this->container->get('publicRenderer')->render($response, 'public-index.phtml', [
+            "data" => $data
+        ]);
     }
 
     public function renderAdmin($request, $response, $args)

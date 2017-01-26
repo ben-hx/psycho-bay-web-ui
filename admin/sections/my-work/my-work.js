@@ -22,18 +22,13 @@ app.controller('MyWorkCtrl', ['$scope', '$timeout', 'config', 'ViewModel', 'Moda
     };
 
     $scope.addTextItem = function (model) {
+        var textItemDefault = {
+            overview: {text: config.textPlaceholder},
+            detail: {show: true, text: config.textPlaceholder}
+        };
         if (model.texts.length < 4) {
-            model.texts.push({overview: config.textPlaceholder, detail: config.textPlaceholder});
+            model.texts.push(textItemDefault);
         }
-    };
-
-    $scope.openMore = function (textModel) {
-        ModalModelService.open(textModel.detail).then(function (data) {
-            if (textModel.detail != data) {
-                textModel.detail = data;
-                $scope.form.$setDirty();
-            }
-        });
     };
 
     $scope.onImageUploadSuccess = function (response, model) {

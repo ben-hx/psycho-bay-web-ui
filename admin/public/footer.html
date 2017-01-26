@@ -1,0 +1,29 @@
+<footer>
+    <div class="container">
+        <div class="row">
+            {% if data.footer.items|length==1 %}
+            {% set columnClass="col-md-6 col-sm-12" %}
+            {% elseif data.footer.items|length==2 %}
+            {% set columnClass="col-md-4 col-sm-4" %}
+            {% elseif data.footer.items|length==3 %}
+            {% set columnClass="col-md-3 col-sm-6" %}
+            {% else %}
+            {% set columnClass="col-md-12 col-sm-12" %}
+            {% endif %}
+
+            {% for item in data.footer.items %}
+            <div class="{{columnClass}}">
+                <div class="item-inner">
+                    <a role="button" class="text-faded footer-links" data-toggle="modal" data-target="#re-useable-modal"
+                       data-content="{{item.detail.text}}">{{item.caption}}</a>
+                </div>
+            </div>
+            {% endfor %}
+            <div class="{{columnClass}}">
+                <div class="item-inner">
+                    <span class="footer-copyright">NadiaWagner 2016 &copy;</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

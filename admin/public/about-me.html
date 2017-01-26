@@ -1,0 +1,36 @@
+<section id="aboutMe" class="section-item">
+
+    <div class="image-wrapper">
+        <img class="img-responsive" src="{{ data.aboutMe.image }}">
+    </div>
+    <div class="box-wrapper">
+        <div class="row text-item-container">
+
+            {% for textItem in data.aboutMe.texts %}
+            <div class="text-item col-sm-{{12/(data.aboutMe.texts|length)}}">
+                <div class="text-item-inner">
+                    <div class="text-item-edit-bar">
+                        {% if loop.index == 1 %}
+                        <button class="btn btn-default btn-circle btn-xl">
+                            <i class="fa {{data.aboutMe.icon|default('fa-file-image-o')}} fa-1x"
+                               aria-hidden="true"></i>
+                        </button>
+                        {% endif %}
+                    </div>
+                    <div class="text-item-text ql-container">
+                        <div class="ql-editor">
+                            {{ textItem.overview.text|raw }}
+                        </div>
+                        {% if textItem.detail.show %}
+                        <a role="button" data-toggle="modal" data-target="#re-useable-modal"
+                           data-content="{{textItem.detail.text}}">
+                            mehr erfahren!
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>

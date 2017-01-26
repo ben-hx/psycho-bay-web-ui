@@ -9,7 +9,13 @@ app.controller('SavingCtrl', ['$scope', '$q', '$timeout', 'config', 'ViewModel',
     $scope.isDirty = false;
 
     $scope.$on('dirtyChanged', function (event, isDirty) {
-        $scope.isDirty = isDirty;
+        if (isDirty) {
+            $scope.isDirty = true;
+        } else {
+            $timeout(function () {
+                $scope.isDirty = false;
+            }, config.toolTipTimeToDismiss);
+        }
     });
 
     $scope.save = function () {

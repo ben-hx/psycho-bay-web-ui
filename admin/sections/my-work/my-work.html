@@ -17,7 +17,7 @@
             </button>
         </div>
 
-        <div class="row">
+        <div class="row text-item-container">
             <div ng-repeat="text in ViewModel.model.myWork.texts track by $index"
                  ng-mouseenter="showEditButtons[$index]=true"
                  ng-mouseleave="showEditButtons[$index]=false"
@@ -25,7 +25,8 @@
                  ng-class="{ 'col-sm-12'   : ViewModel.model.myWork.texts.length <= 1,
                           'col-sm-6'   : ViewModel.model.myWork.texts.length === 2,
                           'col-sm-4'   : ViewModel.model.myWork.texts.length === 3,
-                          'col-sm-3'   : ViewModel.model.myWork.texts.length === 4}">
+                          'col-sm-3'   : ViewModel.model.myWork.texts.length === 4}"
+                 class="text-item">
 
                 <div class="text-item-inner">
                     <div class="text-item-edit-bar">
@@ -45,14 +46,13 @@
                     </div>
                     <div class="text-item-text">
                         <rich-text-editor
-                                ng-model="ViewModel.model.myWork.texts[$index].overview"
-                                show-toolbar="{{showToolBar[$index]}}">
+                                ng-model="ViewModel.model.myWork.texts[$index].overview.text"
+                                show-tool-bar="showToolBar[$index]">
+                            <open-more show="ViewModel.model.myWork.texts[$index].detail.show"
+                                       ng-model="ViewModel.model.myWork.texts[$index].detail.text">
+                                mehr erfahren!
+                            </open-more>
                         </rich-text-editor>
-                        <a href=""
-                           ng-hide="ViewModel.model.myWork.texts[$index].overview == ''"
-                           ng-click="openMore(ViewModel.model.myWork.texts[$index])">
-                            mehr erfahren!
-                        </a>
                     </div>
                 </div>
             </div>

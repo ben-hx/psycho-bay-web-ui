@@ -1,0 +1,24 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a type="button" class="navbar-toggle" data-toggle="collapse"
+               data-target=".navbar-collapse">
+                <span class="glyphicon glyphicon-menu-hamburger">
+                    <span class="sr-only">Toggle Navigation</span>
+                </span>
+            </a>
+            <a class="navbar-brand page-scroll" href="#pageTop">NadiaWagner</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                {% for key, item in data if key in ['aboutMe', 'myWork', 'mySurgery'] %}
+                <li>
+                    <a class="page-scroll" href="#{{key}}">
+                        {{item.caption}}
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</nav>

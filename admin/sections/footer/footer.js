@@ -16,7 +16,7 @@ app.controller('FooterCtrl', ['$scope', '$state', 'ViewModel', 'ModalModelServic
 
     $scope.addItem = function (model) {
         if (model.items.length < 3) {
-            model.items.push({caption: "Item", detail: "Hier kommt ein neuer Text!"});
+            model.items.push({caption: "Item", detail: {text: "Hier kommt ein neuer Text!"}});
         }
     };
 
@@ -26,7 +26,7 @@ app.controller('FooterCtrl', ['$scope', '$state', 'ViewModel', 'ModalModelServic
     };
 
     $scope.openModal = function (textModel) {
-        ModalModelService.open(textModel.detail).then(function (data) {
+        ModalModelService.open(textModel.detail.text).then(function (data) {
             if (textModel.detail != data) {
                 textModel.detail = data;
                 $scope.form.$setDirty();

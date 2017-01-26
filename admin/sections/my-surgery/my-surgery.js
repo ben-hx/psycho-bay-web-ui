@@ -2,7 +2,7 @@
 
 var app = angular.module('myApp.my-surgery', ['ui.bootstrap']);
 
-app.controller('MySurgeryCtrl', ['$scope', '$timeout', 'config', 'ViewModel', 'ModalModelService', function ($scope, $timeout, config, ViewModel, ModalModelService) {
+app.controller('MySurgeryCtrl', ['$scope', '$timeout', 'config', 'ViewModel', function ($scope, $timeout, config, ViewModel) {
 
     $scope.ViewModel = ViewModel;
 
@@ -22,18 +22,13 @@ app.controller('MySurgeryCtrl', ['$scope', '$timeout', 'config', 'ViewModel', 'M
     };
 
     $scope.addTextItem = function (model) {
+        var textItemDefault = {
+            overview: {text: config.textPlaceholder},
+            detail: {show: true, text: config.textPlaceholder}
+        };
         if (model.texts.length < 3) {
-            model.texts.push({overview: config.textPlaceholder, detail: config.textPlaceholder});
+            model.texts.push(textItemDefault);
         }
-    };
-
-    $scope.openMore = function (textModel) {
-        ModalModelService.open(textModel.detail).then(function (data) {
-            if (textModel.detail != data) {
-                textModel.detail = data;
-                $scope.form.$setDirty();
-            }
-        });
     };
 
     $scope.onImageUploadSuccess = function (response, model) {

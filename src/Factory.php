@@ -43,6 +43,9 @@ class Factory
                 'admin' => [
                     'path' => __DIR__ . '/../admin/',
                 ],
+                'public' => [
+                    'path' => __DIR__ . '/../admin/',
+                ],
             ],
         ];
     }
@@ -55,11 +58,6 @@ class Factory
     public function inizializeContainerDI()
     {
         $container = $this->app->getContainer();
-
-        $container['renderer'] = function ($c) {
-            $settings = $c->get('settings')['renderer'];
-            return new PhpRenderer($settings['template_path']);
-        };
 
         $container['logger'] = function ($c) {
             $settings = $c->get('settings')['logger'];
@@ -100,6 +98,17 @@ class Factory
         $container['renderer'] = function ($c) {
             $settings = $c->get('settings')['renderer'];
             return new PhpRenderer($settings['template_path']);
+        };
+
+        $container['publicRenderer'] = function ($c) {
+            //return new PhpRenderer($c->get('settings')['public']['path']);
+            $view = new \Slim\Views\Twig($c->get('settings')['public']['path']);
+
+            // Instantiate and add Slim specific extension
+            $basePath = rtrim(str_ireplace('index.php', '', $c['request']->getUri()->getBasePath()), '/');
+            $view->addExtension(new \Slim\Views\TwigExtension($c['router'], $basePath));
+
+            return $view;
         };
 
         $container['adminRenderer'] = function ($c) {
