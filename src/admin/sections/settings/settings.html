@@ -1,0 +1,148 @@
+<div>
+    <div class="modal-body">
+        <uib-tabset active="activeJustified" justified="true">
+            <uib-tab index="0" heading="SEO">
+                <form name="seoForm" ng-controller="SeoCtrl" class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12 form-group">
+                            <label for="description">Titel (Title Tag)</label>
+                            <textarea class="form-control vresize" id="title"
+                                      placeholder="Hier ist der Seitentitel" rows="2"
+                                      ng-model="ViewModel.model.meta.title"></textarea>
+                        </div>
+                        <div class="col-lg-12 form-group">
+                            <label for="description">Beschreibung (Meta Description)</label>
+                            <textarea class="form-control vresize" id="description"
+                                      placeholder="Hier ist der Inhalt meiner Meta Description" rows="3"
+                                      ng-model="ViewModel.model.meta.description"></textarea>
+                        </div>
+                        <div class="col-lg-12 form-group">
+                            <label for="description">Stichwörter (Meta Keywords)</label>
+                            <textarea class="form-control vresize" id="keywords"
+                                      placeholder="keyword 1, keyword 2, keyword 3"
+                                      rows="3" ng-model="ViewModel.model.meta.keywords"></textarea>
+                        </div>
+                    </div>
+                </form>
+            </uib-tab>
+            <uib-tab index="1" heading="Benutzer">
+                <form name="updateUserForm" ng-controller="UpdateUserInfoCtrl" class="container-fluid"
+                      ng-submit="updateUser(user)">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div ng-show="!whileEditing" class="form-group">
+                                <span>
+                                    <label>Benutzername</label>
+                                    <span>"{{user.username}}"</span>
+                                    <button type="button" class="btn btn-link" ng-click="whileEditing = true"
+                                            style="padding-left: 5px; padding-top: 5px;">
+                                        ändern!
+                                    </button>
+                                </span>
+                            </div>
+                            <div ng-show="whileEditing">
+                                <div class="form-group has-feedback">
+                                    <label for="username">Name</label>
+                                    <input class="form-control" id="username" type="text"
+                                           ng-model="user.username" required/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 form-group" ng-show="whileEditing">
+                            <div class="pull-right">
+                                <button type="submit" class="btn btn-primary"
+                                        ng-disabled="updateUserForm.$invalid || !updateUserForm.$dirty">
+                                    Speichern
+                                </button>
+                                <button type="button" class="btn btn-danger" ng-click="whileEditing = false">
+                                    Abbrechen
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <form name="changePasswordForm" ng-controller="ChangePasswordCtrl" class="container-fluid"
+                      ng-submit="changePassword(password.oldPassword, password.newPassword)">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div ng-show="!passwordWhileEditing" class="form-group">
+                                <span>
+                                    <label>Passwort </label>
+                                    <button type="button" class="btn btn-link" ng-click="passwordWhileEditing = true"
+                                            style="padding-left: 5px; padding-top: 5px;">
+                                        ändern!
+                                    </button>
+                                </span>
+                            </div>
+
+                            <div ng-show="passwordWhileEditing">
+                                <div class="form-group has-feedback" ng-class="{
+                                    'has-error': (password.oldPassword == ''),
+                                    'has-success': (password.oldPassword != '') }">
+                                    <label for="oldPassword">Altes Passwort</label>
+                                    <input class="form-control" id="oldPassword" type="password"
+                                           ng-model="password.oldPassword"
+                                           ng-change="oldPasswordOnChange(password.oldPassword)"
+                                           required/>
+                                    <span ng-show="(password.oldPassword == '')"
+                                          class="help-block">Altes Passwort wird benötigt</span>
+                                </div>
+
+                                <div class="form-group has-feedback" ng-class="{
+                                    'has-error': changePasswordForm.password.$dirty && !changePasswordForm.confirmPassword.$valid,
+                                    'has-success': changePasswordForm.password.$valid && changePasswordForm.confirmPassword.$valid }">
+
+                                    <label for="oldPassword">Neues Passwort</label>
+                                    <input class="form-control" type="password" name="password" id="password"
+                                           ng-model="password.newPassword"
+                                           required/>
+                                    <span ng-show="changePasswordForm.password.$dirty && changePasswordForm.password.$error.required"
+                                          class="help-block">Neues Passwort wird benötigt</span>
+                                    <span class="form-control-feedback"
+                                          ng-show='changePasswordForm.password.$valid && changePasswordForm.confirmPassword.$valid'>
+                                        <i class="fa fa-check"></i>
+                                    </span>
+                                </div>
+
+                                <div class="form-group has-feedback" ng-class="{
+                                    'has-error': changePasswordForm.password.$dirty && !changePasswordForm.confirmPassword.$valid,
+                                    'has-success': changePasswordForm.password.$valid && changePasswordForm.confirmPassword.$valid }">
+
+                                    <label for="oldPassword">Neues Passwort bestätigen</label>
+                                    <input type="password" name="confirmPassword" id="confirmPassword"
+                                           class="form-control"
+                                           ng-model="password.confirmNewPassword" required
+                                           password-input="password">
+                                    <span class="form-control-feedback"
+                                          ng-show='changePasswordForm.confirmPassword.$valid'>
+                                        <i class="fa fa-check"></i>
+                                    </span>
+                                    <span ng-show="changePasswordForm.confirmPassword.$dirty && !changePasswordForm.confirmPassword.$valid"
+                                          class="help-block">
+                                        Bitte bestätige das neue Passwort
+                                    </span>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-lg-12 form-group" ng-show="passwordWhileEditing">
+                            <div class="pull-right">
+                                <button type="submit" class="btn btn-primary"
+                                        ng-disabled="changePasswordForm.$invalid || !changePasswordForm.$dirty">
+                                    Speichern
+                                </button>
+                                <button type="button" class="btn btn-danger" ng-click="passwordWhileEditing = false">
+                                    Abbrechen
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </uib-tab>
+        </uib-tabset>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" ng-click="ok(data)">Schliessen</button>
+    </div>
+</div>

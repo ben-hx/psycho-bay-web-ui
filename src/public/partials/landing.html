@@ -1,0 +1,32 @@
+<header class="section-item section-item-landing">
+    <div class="image-wrapper">
+        <div id="landing" class="img-center-anchor"></div>
+        <img class="img-responsive"
+             src="{{ data.landing.image.src }}"
+             title="{{ data.landing.image.title }}"
+             alt="{{ data.landing.image.alt }}">
+    </div>
+    <div class="box-wrapper">
+        <div class="row text-item-container">
+            {% for key, item in data if key in ['aboutMe', 'myWork', 'mySurgery', 'location'] %}
+            <div class="col-sm-3 text-item">
+                <div class="text-item-inner">
+                    <div class="text-item-text">
+                        <div class="text-item-icon-wrapper">
+                            <button class="text-item-icon-btn">
+                                <i class="fa {{item.icon|default('fa-file-image-o')}} fa-4x"
+                                   aria-hidden="true"></i>
+                            </button>
+                        </div>
+                        <div class="ql-container">
+                            <div class="ql-editor">
+                                {{ item.textLanding|raw }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</header>

@@ -1,8 +1,8 @@
 {
-  "name": "tacnonc",
-  "description": "tacnocn in your face",
+  "name": "psycho-bay",
+  "description": "",
   "version": "0.0.0",
-  "homepage": "https://github.com/angular/angular-seed",
+  "homepage": "",
   "license": "MIT",
   "private": true,
   "dependencies": {
@@ -27,8 +27,9 @@
     "ng-tags-input": "^3.1.1",
     "ng-file-upload": "^12.2.13",
     "angular-quill": "^0.9.1",
-    "quill": "^1.1.7",
+    "quill": "^1.2.0",
     "textAngular": "^1.5.16",
-    "angular-xeditable": "^0.5.0"
+    "angular-xeditable": "^0.5.0",
+    "components-font-awesome": "^4.7.0"
   }
 }

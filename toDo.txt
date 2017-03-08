@@ -1,8 +1,0 @@
-Überschriften für Therapiebereiche
-Icons mit svg einbetten
-Editorfeld(Bold Kursiv blalaldfasd) im Popup für contenteditable Felder
-Mehr erfahren -> mehr
-Landing-Blöcke im Image
-Schriftart einbetten
-Impressum -> contenteditable
-contenteditable-Felder -> no Layout

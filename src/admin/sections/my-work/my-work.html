@@ -1,0 +1,65 @@
+<section class="section-item"
+         ng-form="form"
+         ng-mouseenter="showAddButton=true"
+         ng-mouseleave="showAddButton=false">
+
+    <div class="image-wrapper">
+        <editable-carousel ng-model="ViewModel.model.myWork.images"
+                           on-change="onImagesChange(response)"
+                           options="{uploadImageCaption: config.uploadImageCaption, uploadUrl: config.imageUploadUrl, progressBarTimeToDismiss: config.toolTipTimeToDismiss}">
+        </editable-carousel>
+    </div>
+
+    <div class="box-wrapper">
+        <div class="text-item-add animate-hide"
+             ng-show="showAddButton">
+            <button type="button" class="btn btn-default btn-circle btn-xl"
+                    ng-click="addTextItem(ViewModel.model.myWork)">
+                <i class="fa fa-plus" aria-hidden="true"></i>
+            </button>
+        </div>
+
+        <div class="row text-item-container">
+            <div ng-repeat="text in ViewModel.model.myWork.texts track by $index"
+                 ng-mouseenter="showEditButtons[$index]=true"
+                 ng-mouseleave="showEditButtons[$index]=false"
+                 ng-blur="showEditButtons[$index]=true"
+                 ng-class="{ 'col-sm-12'   : ViewModel.model.myWork.texts.length <= 1,
+                          'col-sm-6'   : ViewModel.model.myWork.texts.length === 2,
+                          'col-sm-4'   : ViewModel.model.myWork.texts.length === 3,
+                          'col-sm-3'   : ViewModel.model.myWork.texts.length === 4}"
+                 class="text-item">
+
+                <div class="text-item-inner">
+                    <div class="text-item-edit-bar">
+                        <section-button class="btn btn-default btn-circle btn-xl"
+                                        ng-if="$index == 0"
+                                        ng-model="ViewModel.model.myWork.icon"></section-button>
+                        <span class="animate-hide pull-right" ng-show="showEditButtons[$index]">
+                            <button type="button" class="btn btn-default btn-circle btn-xl"
+                                    ng-click="showToolBar[$index] = !showToolBar[$index]">
+                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                            </button>
+                            <button type="button" class="btn btn-danger btn-circle btn-xl"
+                                    ng-click="removeItem(ViewModel.model.myWork, $index)">
+                                <i class="fa fa-trash-o" aria-hidden="true"></i>
+                            </button>
+                        </span>
+                    </div>
+                    <div class="text-item-text">
+                        <rich-text-editor
+                                ng-model="ViewModel.model.myWork.texts[$index].overview.text"
+                                show-tool-bar="showToolBar[$index]">
+                            <open-more show="ViewModel.model.myWork.texts[$index].detail.show"
+                                       ng-model="ViewModel.model.myWork.texts[$index].detail.text">
+                                mehr erfahren!
+                            </open-more>
+                        </rich-text-editor>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</section>

@@ -1,4 +1,5 @@
 SetEnv JWT_SECRET "supersecretkeyyoushouldnotcommittogithub"
+SetEnv JWT_ALGORITHM "HS256"
 
 # Some hosts may require you to use the `RewriteBase` directive.
 # If you need to use the `RewriteBase` directive, it should be the
@@ -10,3 +11,4 @@ RewriteBase /
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^ index.php [QSA,L]
+RewriteRule .* - [env=HTTP_AUTHORIZATION:%{HTTP:Authorization}]

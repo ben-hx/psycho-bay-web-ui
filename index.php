@@ -1,8 +1,8 @@
 <?php
 
-require __DIR__ . '/vendor/autoload.php';
+require __DIR__ . '/libs/vendor/autoload.php';
 
-use BenHx\Factory;
+use \BenHx\Factory;
 
-$factory = new Factory();
+$factory = new Factory(include(__DIR__ . '/config.php'));
 $factory->inizialize();

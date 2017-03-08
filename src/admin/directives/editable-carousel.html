@@ -1,0 +1,12 @@
+<div class="editable-gallery">
+    <div uib-carousel active="0" ngf-drag-over-class="'dragover'">
+        <div class="inner animate-hide" ng-click="editImages()">
+            <div class="info">
+                Klicken zum editieren der Gallerie
+            </div>
+        </div>
+        <div uib-slide ng-repeat="image in ngModel track by $index" index="$index">
+            <img class="img-gallery img-responsive" ng-src="{{image.src}}">
+        </div>
+    </div>
+</div>

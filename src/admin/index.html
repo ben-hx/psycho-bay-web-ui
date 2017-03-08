@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+{% verbatim %}
+<html lang="en" ng-app="myApp" class="no-js">
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>NadiaWagner</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <base href="/admin/">
+
+    <!-- build:css css/app.css -->
+    <link href="/libs/bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+    <link href="/libs/bower_components/angular-loading-bar/build/loading-bar.css" rel="stylesheet">
+    <link href="/libs/bower_components/angular-ui-notification/dist/angular-ui-notification.css" rel="stylesheet">
+    <link href="/libs/bower_components/angular-xeditable/dist/css/xeditable.css" rel="stylesheet">
+    <link href="/libs/bower_components/components-font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/libs/no-package-manager/quill/dist/quill.snow.css" rel="stylesheet">
+    <link href="/assets/css/app.css" rel="stylesheet">
+    <link href="/assets/css/loading-bar.css" rel="stylesheet">
+    <!-- endbuild -->
+
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+</head>
+<body id="page-top" class="index ng-cloak" ng-cloak>
+<!-- Has to be included first, to hide the rest of the screen-->
+<div ng-controller="LoadingIndicatorCtrl" ng-hide="hideScreen"
+     class="loading vertical-center fade-in-out">
+    <div class="text-center">
+        <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+    </div>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-top" ng-controller="NavigationCtrl">
+    <div class="container">
+        <div class="navbar-header">
+            <a type="button" class="navbar-toggle" data-toggle="collapse"
+               data-target=".navbar-collapse">
+                <span class="glyphicon glyphicon-menu-hamburger">
+                    <span class="sr-only">Toggle Navigation</span>
+                </span>
+            </a>
+            <a class="navbar-brand page-scroll" href="#page-top"
+               du-smooth-scroll>NadiaWagner</a>
+        </div>
+        <form name="form" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li ng-form="editForm" editable-form class="page-scroll"
+                    ng-repeat="(key, item) in ViewModel.model"
+                    ng-if="navigationSections.indexOf(key)>=0"
+                    ng-mouseenter="showEditButtons[$index]=true"
+                    ng-mouseleave="showEditButtons[$index]=false">
+                    <a href=""
+                       editable-text="item.caption"
+                       e-ng-model="item.caption"
+                       e-ng-blur="editForm.$submit()">
+                        {{item.caption}}
+                    </a>
+                    <span class="item-edit-bar"
+                          ng-show="showEditButtons[$index] || editForm.$visible">
+                        <button type="button" class="btn btn-default btn-circle btn-sm"
+                                ng-click="!editForm.$visible ? editForm.$show() : editForm.$submit()">
+                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                        </button>
+                    </span>
+                </li>
+            </ul>
+        </form>
+    </div>
+</nav>
+
+<!--[if lt IE 7]>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+    your browser</a> to improve your experience.</p>
+<![endif]-->
+<div ui-view class="view-animate view-main" autoscroll></div>
+
+<!-- build:js js/app.js -->
+<script src="/libs/bower_components/jquery/dist/jquery.js"></script>
+<script src="/libs/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<script src="/libs/bower_components/jquery.easing/js/jquery.easing.js"></script>
+<script src="/libs/bower_components/angular/angular.js"></script>
+<script src="/libs/bower_components/angular-sanitize/angular-sanitize.js"></script>
+<script src="/libs/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="/libs/bower_components/angular-animate/angular-animate.js"></script>
+<script src="/libs/bower_components/angular-xeditable/dist/js/xeditable.js"></script>
+<script src="/libs/bower_components/angular-cookies/angular-cookies.js"></script>
+<script src="/libs/bower_components/angular-bootstrap/ui-bootstrap.js"></script>
+<script src="/libs/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+<script src="/libs/bower_components/ng-tags-input/ng-tags-input.js"></script>
+<script src="/libs/bower_components/angular-scroll/angular-scroll.js"></script>
+<script src="/libs/bower_components/angular-loading-bar/build/loading-bar.js"></script>
+<script src="/libs/bower_components/angular-ui-notification/dist/angular-ui-notification.js"></script>
+<script src="/libs/bower_components/ng-file-upload/ng-file-upload-all.js"></script>
+<script src="/libs/no-package-manager/quill/dist/quill.js"></script>
+<script src="/src/admin/sections/header/cbpAnimatedHeader.js"></script>
+
+<script src="/src/admin/app.js"></script>
+<script src="/src/admin/config.js"></script>
+<script src="/src/admin/directives/directives.js"></script>
+
+<script src="/src/admin/services/services.js"></script>
+<script src="/src/admin/services/authentication/authentication-service.js"></script>
+<script src="/src/admin/services/navigation/navigation.js"></script>
+<script src="/src/admin/services/modal/modal-service.js"></script>
+<script src="/src/admin/services/confirmation/confirmation.js"></script>
+<script src="/src/admin/services/image-upload/image-upload.js"></script>
+<script src="/src/admin/services/progress/progress.js"></script>
+<script src="/src/admin/services/error/error.js"></script>
+<script src="/src/admin/services/notification/notification.js"></script>
+<script src="/src/admin/services/loading-indicator/loading-indicator.js"></script>
+
+<script src="/src/admin/models/models.js"></script>
+<script src="/src/admin/models/api-manager-util.js"></script>
+<script src="/src/admin/models/view-model.js"></script>
+<script src="/src/admin/models/user-repository.js"></script>
+
+<script src="/src/admin/sections/login/login.js"></script>
+<script src="/src/admin/sections/settings/settings.js"></script>
+<script src="/src/admin/sections/home/home.js"></script>
+<script src="/src/admin/sections/bottom-bar/bottom-bar.js"></script>
+<script src="/src/admin/sections/footer/footer.js"></script>
+<script src="/src/admin/sections/landing/landing.js"></script>
+<script src="/src/admin/sections/about-me/about-me.js"></script>
+<script src="/src/admin/sections/my-surgery/my-surgery.js"></script>
+<script src="/src/admin/sections/my-work/my-work.js"></script>
+<!-- endbuild -->
+</body>
+{% endverbatim %}

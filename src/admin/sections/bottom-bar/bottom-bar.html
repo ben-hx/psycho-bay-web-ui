@@ -1,0 +1,75 @@
+<div class="fixed-bottom-bar" ng-init="init()"
+     ng-mouseleave="hideTooltips()">
+
+    <span class="animate-hide" ng-hide="hideBar">
+
+        <button type="button" class="btn btn-default btn-circle btn-xl"
+                ng-click="logout()">
+            <i class="fa fa-sign-out" aria-hidden="true"
+               uib-tooltip="Ausloggen"
+               tooltip-class="bottom-bar-tooltip"
+               tooltip-is-open="tooltips.logout"
+               tooltip-placement="left"></i>
+        </button>
+
+        <button type="button"
+                class="btn"
+                ng-class="ViewModel.model.settings.online ? 'btn-default btn-circle btn-xl' : 'btn-danger btn-circle btn-xl'"
+                ng-click="online()"
+                popover-placement="top-right"
+                uib-popover="{{ViewModel.model.settings.online ? 'Website erfolgreich online gestellt!' : 'Website erfolgreich offline gestellt!'}}"
+                popover-is-open="hasOnlineSet">
+            <i ng-class="ViewModel.model.settings.online ? 'fa fa-toggle-on' : 'fa fa-toggle-off'"
+               aria-hidden="true"
+               uib-tooltip="Online/Offline"
+               tooltip-class="bottom-bar-tooltip"
+               tooltip-is-open="tooltips.onlineOffline"
+               tooltip-placement="top"></i>
+        </button>
+
+        <button type="button" class="btn btn-default btn-circle btn-xl"
+                ng-disabled="settingsIsOpen"
+                ng-click="settings()">
+            <i class="fa fa-wrench" aria-hidden="true"
+               uib-tooltip="Einstellungen"
+               tooltip-class="bottom-bar-tooltip"
+               tooltip-is-open="tooltips.settings"
+               tooltip-placement="bottom"></i>
+        </button>
+
+        <button type="button" class="btn btn-default btn-circle btn-xl"
+                ng-disabled="!isDirty"
+                ng-click="undo()"
+                popover-placement="top-right"
+                uib-popover="Erfolgreich zurückgesetzt!"
+                popover-is-open="hasSuccessfullyUndo"
+                data-toggle="tooltip" data-placement="top" title="Rückgänging">
+            <i class="fa fa-undo" aria-hidden="true"
+               uib-tooltip="Rückgängig"
+               tooltip-class="bottom-bar-tooltip"
+               tooltip-is-open="tooltips.undo"
+               tooltip-placement="top"></i>
+        </button>
+
+        <button type="button" class="btn btn-default btn-circle btn-xl"
+                ng-disabled="!isDirty"
+                ng-click="save()"
+                popover-placement="top-right"
+                uib-popover="Erfolgreich gespeichert!"
+                popover-is-open="hasSuccessfullySaved"
+                data-toggle="tooltip" data-placement="top" title="Speichern">
+            <i class="fa fa-floppy-o" aria-hidden="true"
+               uib-tooltip="Speichern"
+               tooltip-class="bottom-bar-tooltip"
+               tooltip-is-open="tooltips.save"
+               tooltip-placement="bottom"></i>
+        </button>
+    </span>
+
+    <button type="button" class="btn btn-default btn-half-circle btn-xl"
+            ng-click="hideBar = !hideBar"
+            data-toggle="tooltip" data-placement="top" title="Mehr">
+        <span class="fixed-bottom-bar-badge animate-hide" ng-hide="!isDirty">!</span>
+        <i ng-class="hideBar ? 'fa fa-hand-o-left' : 'fa fa-hand-o-right'" aria-hidden="true"></i>
+    </button>
+</div>

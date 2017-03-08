@@ -1,0 +1,183 @@
+{
+  "meta": {
+    "description": "asdfasdfasdf",
+    "keywords": "fuckl"
+  },
+  "settings": {
+    "online": false
+  },
+  "landing": {
+    "image": {
+      "src": "\/assets\/imgs\/landing\/landing.jpg",
+      "title": "testlff",
+      "alt": "asdf"
+    }
+  },
+  "aboutMe": {
+    "icon": "fa-child",
+    "image": {
+      "src": "\/assets\/imgs\/about-me\/about-me.jpg",
+      "title": "hahfasdf",
+      "alt": "asdfhafds"
+    },
+    "caption": "\u00dcber mich",
+    "textLanding": "<p>adsfasdfasdfasdfasdf<\/p><p>jk\u00f6jlkj<\/p>",
+    "texts": [
+      {
+        "overview": {
+          "text": "<p class=\"ql-align-justify\">Mi, saerior eiusdae sum voluptate quunt ommos aliciis sim reprem aut dis sitis ipit fugiandant, comnis dit, comnitem faccabo. Aci te pelia veni tem is moluptatur? Qui apeditatibus maxim aut ut voloruntiur rerisit int harcitae nest dolorit quis sequam quaspiet et ad maio enimus aut maximus volles doluptatur, sit aceritatis as et iusaeri tatenis mi, quid q<strong>uia coriam ut essi con cons<\/strong>ene<\/p>"
+        },
+        "detail": {
+          "show": true,
+          "text": "<p>Mi, saerior eiusdae sum voluptate quunt ommos aliciis sim reprem aut dis sitis ipit fugiandant, comnis dit, comnitem faccabo. Aci te pelia veni tem is moluptatur? Qui apeditatibus maxim aut ut voloruntiur rerisit int harcit<strong>ae nest dolorit quis sequam quaspiet et ad maio enimus aut maximus volles doluptatur, sit aceritatis as et iusaeri tatenis mi, quid quia coriam ut essi con conseneaa<\/strong><\/p>"
+        }
+      },
+      {
+        "overview": {
+          "text": "<p>Mi, saerior eiusdae sum voluptate quunt ommos aliciis sim reprem aut dis sitis ipit fugiandant, comnis dit, comnitem <\/p>"
+        },
+        "detail": {
+          "show": false,
+          "text": "Mi, saerior eiusdae sum voluptate quunt ommos aliciis sim reprem aut dis sitis ipit fugiandant, comnis dit, comnitem faccabo. Aci te pelia veni tem is moluptatur? Qui apeditatibus maxim aut ut voloruntiur rerisit int harcitae nest dolorit quis sequam quaspiet et ad maio enimus aut maximus volles doluptatur, sit aceritatis as et iusaeri tatenis mi, quid quia coriam ut essi con consene"
+        }
+      },
+      {
+        "overview": {
+          "text": "<p><em>Mi, saerior eiusdae sum voluptate quunt ommos aliciis sim reprem aut dis sitis ipit fugiandant, comnis dit, comnitem faccabo. Aci te pelia veni tem is moluptatur? Qui apeditatibus maxim aut ut voloruntiur rerisit int harcitae nest dolorit quis sequam quaspiet et ad maio enimus aut maximus volles doluptatur, sit aceritatis as et iusaeri tatenis mi, quid quia coriam ut essi con consene<\/em><\/p>"
+        },
+        "detail": {
+          "show": true,
+          "text": "Mi, saerior eiusdae sum voluptate quunt ommos aliciis sim reprem aut dis sitis ipit fugiandant, comnis dit, comnitem faccabo. Aci te pelia veni tem is moluptatur? Qui apeditatibus maxim aut ut voloruntiur rerisit int harcitae nest dolorit quis sequam quaspiet et ad maio enimus aut maximus volles doluptatur, sit aceritatis as et iusaeri tatenis mi, quid quia coriam ut essi con consene"
+        }
+      },
+      {
+        "overview": {
+          "text": "<p>Hier kommt einasfdasfdasdfasfdafdaasdf neuer Text!<\/p><p>adfs<\/p><p>asdf<\/p><p>afd<\/p>"
+        },
+        "detail": {
+          "show": true,
+          "text": "Hier kommt ein neuer Text!"
+        }
+      }
+    ]
+  },
+  "myWork": {
+    "icon": "fa-user-md",
+    "images": [
+      {
+        "src": "\/assets\/imgs\/my-work\/1.jpg",
+        "title": "test.def",
+        "alt": "jlkjl"
+      },
+      {
+        "src": "\/assets\/imgs\/my-work\/2.jpg",
+        "title": "",
+        "alt": ""
+      },
+      {
+        "src": "\/assets\/imgs\/my-work\/2.jpg",
+        "title": "",
+        "alt": ""
+      }
+    ],
+    "caption": "Meine Arbeit",
+    "textLanding": "<p>test test test<\/p>",
+    "texts": [
+      {
+        "overview": {
+          "text": "<p><strong>Lerntherapie<\/strong><\/p><p>Sie wissen, wie schwer es ist, ihr Kind zum Lernen f\u00fcr die Schule zu bewegen. Selbst Hausaufgaben werden dabei zum t\u00e4glichen Kampf, der beide Seiten viel Kraft kostet. Kinder mit \u00c4ngsten, Selbstzweifeln und Blockaden haben es besonders schwer<span style=\"color: red;\">.<\/span><\/p>"
+        },
+        "detail": {
+          "show": true,
+          "text": "<p><strong class=\"ql-size-huge\">Lerntherapie<\/strong><\/p><p>Sie wissen, wie schwer es ist, ihr Kind zum Lernen f\u00fcr die Schule zu bewegen. Selbst Hausaufgaben werden dabei zum t\u00e4glichen Kampf, der beide Seiten viel Kraft kostet. Kinder mit \u00c4ngsten, Selbstzweifeln und Blockaden haben es besonders schwer. Die Leistungen in Deutsch oder\/und Mathematik werden immer schlechter. Sie verstehen gar nicht warum es das nicht kann. Doch was tun?<\/p><p>&nbsp;<\/p><p>Es gibt Auswege aus diesem Teufelskreislauf! Seit der Erziehung meiner eigenen, inzwischen erwachsenen, Kinder und durch die jahrelange freiberufliche Arbeit als Lerntherapeutin verstehe ich es, lernunmotivierten Kindern und Jugendlichen den Spa\u00df und Erfolg am Lernen zu vermitteln. Mit der passenden Methode, einem ganzheitlichem kompetenzorientierten Ansatz, gro\u00dfem Einf\u00fchlungsverm\u00f6gen und der richtigen Prise Humor l\u00e4sst sich jede Blockademauer einrei\u00dfen. Enthusiasmus ist ansteckend!<\/p><p>&nbsp;<\/p><p>\u00b7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Lese- und Rechtschreibst\u00f6rung (Legasthenie)<\/p><p>\u00b7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mathematikst\u00f6rung (Dyskalkulie)<\/p><p>\u00b7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Konzentrationsst\u00f6rung<\/p><p>\u00b7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Entwicklungsverz\u00f6gerung<\/p><p>\u00b7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Allgemeine Lernschwierigkeiten und Leistungsprobleme<\/p><p><br><\/p><p>Zu jeder meiner Therapien geh\u00f6rt eine umfangreiche Diagnostik sowie die Aufstellung eines Therapieplans. Gerne stehe ich den Eltern mit Rat und Tat zur Seite.<\/p>"
+        }
+      },
+      {
+        "overview": {
+          "text": "<p><strong>Psychotherapie<\/strong><\/p><p>Sie machen sich Sorgen um ihr Kind? Es verh\u00e4lt sich auff\u00e4llig, wirkt belastet oder zieht sich zur\u00fcck und Sie k\u00f6nnen sich nicht erkl\u00e4ren, woran das liegt? Depressive Z\u00fcge, \u00c4ngste und Konzentrationsst\u00f6rungen oder Aggressivit\u00e4t bei Kindern sind l\u00e4ngst keine Seltenheit mehr.<\/p>"
+        },
+        "detail": {
+          "show": true,
+          "text": "<p>Sie machen sich Sorgen um ihr Kind? Es verh\u00e4lt sich auff\u00e4llig, wirkt belastet oder zieht sich zur\u00fcck und Sie k\u00f6nnen sich nicht erkl\u00e4ren, woran das liegt? Depressive Z\u00fcge, \u00c4ngste und Konzentrationsst\u00f6rungen oder Aggressivit\u00e4t bei Kindern sind l\u00e4ngst keine Seltenheit mehr. Psychische St\u00f6rungen sind in der Mitte der Gesellschaft angekommen. Doch was tun? <\/p><p>&nbsp;<\/p><p>Der Schl\u00fcssel liegt darin, einen geeigneten Zugang zum Kind zu finden. Das ist eine sehr individuelle Angelegenheit, die viel Fingerspitzengef\u00fchl erfordert. Durch meine Pers\u00f6nlichkeit gelingt es mir sehr schnell eine offene und vertrauensvolle therapeutische Beziehung zu den Kindern und Jugendlichen herzustellen. Das ist die Basis f\u00fcr jede psychische Behandlung und den Einsatz geeigneter Methoden. Dabei greife ich auf meine breite Erfahrung in Verhaltenstherapie, Logotherapie, Maltherapie, systemischer Familientherapie und Gespr\u00e4chstherapie zur\u00fcck. Der Aufbau gesunder, adaptiver Bew\u00e4ltigungsstrategien ist dabei zielf\u00fchrend. Auch die Kombination mit der Lerntherapie ist bei vielen Kindern von gro\u00dfem Vorteil und wirkt sehr erfolgversprechend, da psychische Probleme h\u00e4ufig mit schulischen Problemen einhergehen.<\/p><p>&nbsp;<\/p><p>\u00b7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Entwicklungsst\u00f6rung <\/p><p>\u00b7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Verhaltensst\u00f6rung<\/p><p>\u00b7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;St\u00f6rung des Sozialverhaltens <\/p><p>\u00b7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hyperkinetische St\u00f6rung (ADS) <\/p><p>\u00b7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Emotionale St\u00f6rung (\u00c4ngste) <\/p><p>\u00b7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Depressive St\u00f6rung<\/p><p>\u00b7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ticst\u00f6rung und Zw\u00e4nge<\/p><p>&nbsp;<\/p><p>Zu jeder meiner Therapien geh\u00f6rt eine umfangreiche Diagnostik sowie die Aufstellung eines Therapieplans. Gerne stehe ich den Eltern mit Rat und Tat zur Seite.<\/p>"
+        }
+      },
+      {
+        "overview": {
+          "text": "<p><strong>Erziehungsberatung<\/strong><\/p><p>Sie lieben ihr Kind. Das wissen Sie. Aber diese Debatten \u00fcber allt\u00e4gliche Aufgaben sinad unertr\u00e4glich, Ihr Kind ist frech, folgt Ihnen nicht und zeigt keinerlei Respekt. Stress, Druck und Medien\u00fcberfrachtung erschweren die Situation zus\u00e4tzlich.<\/p>"
+        },
+        "detail": {
+          "show": "true",
+          "text": "<p><strong class=\"ql-size-huge\">Erziehungsberatung<\/strong><\/p><p>Sie lieben ihr Kind. Das wissen Sie. Aber diese Debatten \u00fcber allt\u00e4gliche Aufgaben sind unertr\u00e4glich, Ihr Kind ist frech, folgt Ihnen nicht und zeigt keinerlei Respekt. Stress, Druck und Medien\u00fcberfrachtung erschweren die Situation zus\u00e4tzlich. Besuche bei Freunden und Verwandten mit Ihrem Kind? \u2013 So sicher nicht! Aber das kann kein Dauerzustand sein. Doch was tun?<\/p><p>&nbsp;<\/p><p>In einer entspannten Atmosph\u00e4re reflektieren Sie mit mir gemeinsam das Verhalten Ihres Kindes, aber auch das von Ihnen als Eltern. Sprechen Sie mit mir offen \u00fcber Hilflosigkeiten, Schw\u00e4chen oder auch gutgemeinte \u201eOverprotection\u201c. Es geht dabei nicht um Schuldfragen, sondern um L\u00f6sungsans\u00e4tze. Die Erziehung eines Kindes ist eine hochkomplexe Angelegenheit, f\u00fcr die es kein Kochrezept gibt. Das Geheimnis einer guten Erziehung liegt in einer wachsenden Eltern-Kind-Beziehung und darin, die entwicklungspsychiologischen Zusammenh\u00e4nge von Kindverhalten und Erziehungsstil zu verstehen und in der Anwendung einer klaren, gewaltfreien Kommunikation.<\/p><p>Gemeinsam erarbeiten wir neu angepasste, stabile Erziehungsmethoden, bei denen Sie authentisch bleiben. So finden Sie und Ihr Kind den Weg zur\u00fcck zu einem harmonischen Familienleben. Denn unser Ziel ist das Wohl aller Familienmitglieder!<\/p><p><br><\/p><p>Nach anf\u00e4nglicher Beratung, Anamnese und Analyse der famili\u00e4ren Gegebenheit sind Hausbesuche ebenso m\u00f6glich wie auch Telefonate als Unterst\u00fctzung in krisenreichen Situationen. Hierbei profitieren Sie von meiner jahrelangen Erfahrung und Kooperation mit Kinderg\u00e4rten, Schulen, Kinder\u00e4rzten, Kinder- und Jugendpsychiatern, verschiedenen Kliniken, sowie \u00c4mtern.<\/p>"
+        }
+      },
+      {
+        "overview": {
+          "text": "<p>Hier kommasfdadsft ein neuer Text!<\/p>"
+        },
+        "detail": {
+          "show": true,
+          "text": "Hier kommt ein neuer Text!"
+        }
+      }
+    ]
+  },
+  "mySurgery": {
+    "icon": "fa-institution",
+    "image": {
+      "src": "\/assets\/imgs\/my-surgery\/my-surgery.jpg",
+      "title": "kjl",
+      "alt": ""
+    },
+    "caption": "Meine Praxis",
+    "textLanding": "<p>lkljkjjkljk<\/p>",
+    "texts": [
+      {
+        "overview": {
+          "text": "<p>Mi, saerior eiusdae sum voluptate quunt ommos aliciis sim reprem aut dis sitis ipit fugiandant, comnis dit, comnitem faccabo. Aci te pelia veni tem is moluptatur? Qui apeditatibus maxim aut ut voloruntiur rerisit int harcitae nest dolorit quis sequam quaspiet et ad maio enimus aut maximus volles doluptatur, sit aceritatis as et iusaeri tatenis mi, quid quia coriam ut essi con consene<\/p>",
+          "detail": {
+            "show": true,
+            "text": "Mi, saerior eiusdae sum voluptate quunt ommos aliciis sim reprem aut dis sitis ipit fugiandant, comnis dit, comnitem faccabo. Aci te pelia veni tem is moluptatur? Qui apeditatibus maxim aut ut voloruntiur rerisit int harcitae nest dolorit quis sequam quaspiet et ad maio enimus aut maximus volles doluptatur, sit aceritatis as et iusaeri tatenis mi, quid quia coriam ut essi con consene"
+          }
+        }
+      },
+      {
+        "overview": {
+          "text": "<p>Mi, saerior eiusdae sum voluptate quunt ommos aliciis sim reprem aut dis sitis ipit fugiandant, comnis dit, comnitem faccabo. Aci te pelia veni tem is moluptatur? Qui apeditatibus maxim aut ut voloruntiur rerisit int harcitae nest dolorit quis sequam quaspiet et ad maio enimus aut maximus volles doluptatur, sit aceritatis as et iusaeri tatenis mi, quid quia coriam ut essi con consene<\/p>"
+        },
+        "detail": {
+          "show": true,
+          "text": "<p>Mi, saerior eiusdae sum voluptate quunt ommos aliciis sim reprem aut dis sitis ipit fugiandant, comnis dit, comnitem faccabo. Aci te pelia veni tem is moluptatur? Qui apeditatibus maxim aut ut voloruntiur rerisit int harcitae nest dolorit quis sequam quaspiet et ad maio enimus aut maximus volles doluptatur, sit aceritatis as et iusaeri tatenis mi, quid quia coriam ut essi con consene<\/p>"
+        }
+      },
+      {
+        "overview": {
+          "text": "<p>Hier kommt ein neuer Texasfdasfdafdsafd<\/p>"
+        },
+        "detail": {
+          "show": true,
+          "text": "Hier kommt ein neuer Text!"
+        }
+      }
+    ]
+  },
+  "location": {
+    "icon": "fa-map-marker",
+    "textLanding": "<p>lklaaaaaafllladsfslaflll<\/p>",
+    "text": "<p>Nadia Wagner<\/p><p><br><\/p><p>Graf-Lodronstra\u00dfe 27<\/p><p>12345 Haag an der Amper<\/p><p><br><\/p><p>086123 12312321<\/p><p>Nadia.wagner@gmx.de<\/p>"
+  },
+  "footer": {
+    "items": [
+      {
+        "caption": "Impressum",
+        "detail": "Mi, saerior eiusdae sum voluptate quunt ommos aliciis sim reprem aut dis sitis ipit fugiandant, comnis dit, comnitem faccabo. Aci te pelia veni tem is moluptatur? Qui apeditatibus maxim aut ut voloruntiur rerisit int harcitae nest dolorit quis sequam quaspiet et ad maio enimus aut maximus volles doluptatur, sit aceritatis as et iusaeri tatenis mi, quid quia coriam ut essi con consene"
+      },
+      {
+        "caption": "Haftungsausschluss",
+        "detail": "Mi, saerior eiusdae sum voluptate quunt ommos aliciis sim reprem aut dis sitis ipit fugiandant, comnis dit, comnitem faccabo. Aci te pelia veni tem is moluptatur? Qui apeditatibus maxim aut ut voloruntiur rerisit int harcitae nest dolorit quis sequam quaspiet et ad maio enimus aut maximus volles doluptatur, sit aceritatis as et iusaeri tatenis mi, quid quia coriam ut essi con consene"
+      },
+      {
+        "caption": "Datenschutzerkl\u00e4rung"
+      }
+    ]
+  }
+}

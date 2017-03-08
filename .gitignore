@@ -1,8 +1,10 @@
 logs/*
 !.gitkeep
-node_modules/
-app/bower_components/
+node_modules/*
+db/*
+libs/bower_components/*
+libs/vendor/*
 tmp
 .DS_Store
 .idea
-vendor/
+.htaccess

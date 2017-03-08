@@ -1,0 +1,51 @@
+<form name="form"
+      ng-submit="ok(data)"
+      role="form">
+    <div class="edit-bar">
+        <span class="animate-hide pull-right">
+            <button type="button" class="btn btn-default btn-circle btn-xl"
+                    ngf-select="upload($file)"
+                    ngf-drop="upload($file)">
+                <i class="fa fa-plus" aria-hidden="true"></i>
+            </button>
+        </span>
+    </div>
+    <div class="modal-body">
+        <div class="image-upload-modal container">
+            <div ng-repeat="image in data.images as images track by $index"
+                 class="col-md-4 content"
+                 ng-mouseenter="showEditButtons[$index]=true"
+                 ng-mouseleave="showEditButtons[$index]=false"
+                 ng-blur="showEditButtons[$index]=true">
+                <div class="edit-buttons" ng-show="showEditButtons[$index]">
+                    <button type="button" class="btn btn-danger btn-circle pull-right"
+                            ng-click="removeImage($index)">
+                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                    </button>
+                </div>
+                <div class="img-wrapper">
+                    <img ng-src="{{image.src}}">
+                    <div class="content">
+                        <div class="form-group">
+                            <label for="title">Titel</label>
+                            <textarea class="form-control vresize" id="title" placeholder="Titel"
+                                      ng-model="image.title" rows="3"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="alt">Beschreibung</label>
+                            <textarea class="form-control vresize" id="alt" placeholder="Beschreibung"
+                                      ng-model="image.alt" rows="3"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <span ng-show="dataLoading">
+            <i class="fa fa-spinner fa-spin fa-2x text-primary"></i>
+        </span>
+        <button type="submit" class="btn btn-primary">Schliessen</button>
+    </div>
+</form>

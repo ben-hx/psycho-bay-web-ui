@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /tests/
+Disallow: /logs/
+Disallow: /db/
+Disallow: /src/api/
+Disallow: /src/admin/

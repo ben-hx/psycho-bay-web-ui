@@ -1,0 +1,54 @@
+<header id="landing" class="section-item" ng-form="form">
+
+    <div class="image-wrapper">
+        <image-upload class="img-responsive" ng-model="ViewModel.model.landing.image.src"
+                      on-success="onImageUploadSuccess(response)"
+                      options="{uploadImageCaption: config.uploadImageCaption, uploadUrl: config.imageUploadUrl, progressBarTimeToDismiss: config.toolTipTimeToDismiss}">
+            <div class="form-group">
+                <label for="title">Titel</label>
+                <input type="text" class="form-control" id="title" placeholder="Titel"
+                       ng-model="ViewModel.model.landing.image.title">
+            </div>
+            <div class="form-group">
+                <label for="alt">Beschreibung</label>
+                <input type="text" class="form-control" id="alt" placeholder="Beschreibung"
+                       ng-model="ViewModel.model.landing.image.alt">
+            </div>
+        </image-upload>
+    </div>
+
+    <div class="box-wrapper">
+        <div class="row text-item-container">
+            <div ng-repeat="(key, item) in ViewModel.model"
+                 ng-if="navigationSections.indexOf(key)>=0"
+                 ng-mouseenter="showEditButtons[$index]=true"
+                 ng-mouseleave="showEditButtons[$index]=false"
+                 class="col-sm-3 text-item">
+                <div class="text-item-inner">
+
+                    <div class="text-item-edit-bar">
+                        <span class="animate-hide pull-right" ng-show="showEditButtons[$index]">
+                            <button type="button" class="btn btn-default btn-circle btn-xl"
+                                    ng-click="showToolBar[$index] = !showToolBar[$index]">
+                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                            </button>
+                        </span>
+                    </div>
+                    <div class="text-item-text">
+                        <div class="text-item-icon-wrapper">
+                            <section-button class="text-item-icon-btn"
+                                            icon-size="4"
+                                            ng-model="item.icon"></section-button>
+                        </div>
+
+                        <rich-text-editor
+                                ng-model="item.textLanding"
+                                show-tool-bar="showToolBar[$index]">
+                        </rich-text-editor>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
