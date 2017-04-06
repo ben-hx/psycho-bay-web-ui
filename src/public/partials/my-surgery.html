@@ -1,6 +1,7 @@
 <section class="section-item">
     <div class="image-wrapper">
         <div id="mySurgery" class="img-center-anchor"></div>
+        <div id="location" class="img-center-anchor"></div>
         <img class="img-responsive"
              src="{{ data.mySurgery.image.src }}"
              title="{{ data.mySurgery.image.title }}"
@@ -36,12 +37,12 @@
             {% endfor %}
             <div class="text-item col-sm-{{12/((data.mySurgery.texts|length)+1)}}">
                 <div class="text-item-inner">
-                    <div class="text-item-edit-bar">
+                    <a target="_blank" href="{{data.location.googleMapsUrl}}" class="text-item-edit-bar">
                         <button class="btn btn-default btn-circle btn-xl">
                             <i class="fa {{data.location.icon|default('fa-file-image-o')}} fa-1x"
                                aria-hidden="true"></i>
                         </button>
-                    </div>
+                    </a>
                     <div class="text-item-text ql-container">
                         <div class="ql-editor">
                             {{ data.location.text|raw }}

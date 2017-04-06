@@ -27,16 +27,13 @@ app.provider('errorHandler', function () {
             });
         },
 
-        $get: function ($log, NotificationService) {
+        $get: ['NotificationService', function (NotificationService) {
 
             var handler = {
                 funcError: function (func, err) {
-                    $log.info('Caught error: ' + err);
                     NotificationService.pushError(err);
                 },
                 call: function (func, self, args) {
-                    $log.debug('Function called: ', (func.name || func));
-
                     var result;
                     try {
                         result = func.apply(self, args);
@@ -59,7 +56,7 @@ app.provider('errorHandler', function () {
                 }
             };
             return handler;
-        }
+        }]
     };
 });
 

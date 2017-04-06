@@ -140,6 +140,18 @@
                     </div>
                 </form>
             </uib-tab>
+            <uib-tab index="2" heading="Sonstiges">
+                <form name="miscellaneousForm" ng-controller="MiscellaneousCtrl" class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12 form-group">
+                            <label for="description">Google Maps URL</label>
+                            <textarea class="form-control vresize" id="googleMapsId"
+                                      placeholder="Url für Google" rows="4"
+                                      ng-model="ViewModel.model.location.googleMapsUrl"></textarea>
+                        </div>
+                    </div>
+                </form>
+            </uib-tab>
         </uib-tabset>
     </div>
     <div class="modal-footer">

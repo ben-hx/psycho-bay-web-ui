@@ -76,3 +76,19 @@ app.controller('ChangePasswordCtrl', ['$scope', 'UserRepository', function ($sco
     }
 
 }]);
+
+app.controller('MiscellaneousCtrl', ['$scope', 'ViewModel', function ($scope, ViewModel) {
+
+    $scope.ViewModel = ViewModel;
+
+    $scope.$on('dirtyChanged', function (event, isDirty) {
+        if (!isDirty) {
+            $scope.miscellaneousForm.$setPristine();
+        }
+    });
+
+    $scope.$watch('miscellaneousForm.$dirty', function (newValue, oldValue) {
+        ViewModel.setDirty($scope.miscellaneousForm.$dirty);
+    }, true);
+
+}]);
